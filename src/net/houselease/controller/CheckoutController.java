@@ -16,11 +16,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import net.houselease.pojo.Checkout;
-import net.houselease.pojo.Houselist;
 import net.houselease.pojo.User;
 import net.houselease.pojo.Userlist;
-import net.houselease.service.CheckoutService;
-import net.houselease.service.UserlistService;
+import net.houselease.service.interfaces.CheckoutService;
+import net.houselease.service.interfaces.UserlistService;
 @Controller
 @RequestMapping("/checkout")
 public class CheckoutController {

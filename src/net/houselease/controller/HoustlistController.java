@@ -8,8 +8,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import net.houselease.pojo.Houselist;
-import net.houselease.pojo.QueryVo;
-import net.houselease.service.HouselistService;
+import net.houselease.service.interfaces.HouselistService;
 
 import java.util.List;
 

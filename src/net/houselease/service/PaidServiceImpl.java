@@ -11,6 +11,8 @@ import net.houselease.dao.ZulistMapper;
 import net.houselease.pojo.Paid;
 import net.houselease.pojo.QueryVo;
 import net.houselease.pojo.Zulist;
+import net.houselease.service.interfaces.PaidService;
+
 @Service
 @Transactional
 public class PaidServiceImpl implements PaidService {
@@ -18,36 +20,35 @@ public class PaidServiceImpl implements PaidService {
 	private PaidMapper paidMapper;
 	@Autowired
 	private ZulistMapper zulistMapper;
-	
+
 	@Override
 	public List<Paid> selectall(QueryVo vo) {
-		List<Paid> list=paidMapper.selectall(vo);
+		List<Paid> list = paidMapper.selectall(vo);
 		return list;
 	}
 
 	@Override
 	public Double selectsum(QueryVo vo) {
-		Double sum=paidMapper.selectsum(vo);
+		Double sum = paidMapper.selectsum(vo);
 		return sum;
 	}
 
 	@Override
 	public void deletepaid(Integer id) {
 		paidMapper.deletepaid(id);
-		
+
 	}
 
 	@Override
-	public List<Zulist> findzuuserlist() throws Exception{
-		List<Zulist> list=zulistMapper.findzuuserlist();
+	public List<Zulist> findzuuserlist() throws Exception {
+		List<Zulist> list = zulistMapper.findzuuserlist();
 		return list;
 	}
 
 	@Override
 	public Zulist findzukezulist(Integer id) {
-		Zulist zulist=zulistMapper.findzukezulist(id);
+		Zulist zulist = zulistMapper.findzukezulist(id);
 		return zulist;
 	}
 
-	
 }

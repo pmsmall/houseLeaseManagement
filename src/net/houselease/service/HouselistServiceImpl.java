@@ -7,23 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import net.houselease.dao.HouselistMapper;
 import net.houselease.pojo.Houselist;
-import net.houselease.pojo.QueryVo;
+import net.houselease.service.interfaces.HouselistService;
 
 @Service
 public class HouselistServiceImpl implements HouselistService {
-	
+
 	@Autowired
 	private HouselistMapper houselistMapper;
-	
+
 	@Override
 	public List<Houselist> selectAll() {
-		List<Houselist> houselist=houselistMapper.selectAll();
+		List<Houselist> houselist = houselistMapper.selectAll();
 		return houselist;
 	}
 
 	@Override
 	public Houselist findhouseid(String houseid) {
-		Houselist houselist=houselistMapper.findhouseid(houseid);
+		Houselist houselist = houselistMapper.findhouseid(houseid);
 		return houselist;
 	}
 
@@ -41,19 +41,19 @@ public class HouselistServiceImpl implements HouselistService {
 
 	@Override
 	public Houselist findhouseidupdate(Houselist houselist) {
-		Houselist list=houselistMapper.findhouseidupdate(houselist);
+		Houselist list = houselistMapper.findhouseidupdate(houselist);
 		return list;
 	}
 
 	@Override
 	public void updatehouse(Houselist houselist) {
 		houselistMapper.updatehouse(houselist);
-		
+
 	}
 
 	@Override
 	public Houselist findid(int id) {
-		Houselist list=houselistMapper.findid(id);
+		Houselist list = houselistMapper.findid(id);
 		return list;
 	}
 
@@ -66,9 +66,7 @@ public class HouselistServiceImpl implements HouselistService {
 	@Override
 	public void deletehousebyhouseid(String house_id) {
 		houselistMapper.deletehousebyhouseid(house_id);
-		
-	}
 
-	
+	}
 
 }

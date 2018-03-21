@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="net.houselease.dao.ScheduleMapper" >
-<resultMap id="BaseResultMap" type="net.houselease.pojo.Schedule" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="date" property="date" jdbcType="VARCHAR" />
-    <result column="content" property="content" jdbcType="VARCHAR" />
-    
-  </resultMap>
-<insert id="insertschedule" parameterType="net.houselease.pojo.Schedule">
-	  insert into schedule(date,content) 
-	  values(#{date},#{content})
+<mapper namespace="net.houselease.dao.ScheduleMapper">
+	<resultMap id="BaseResultMap" type="net.houselease.pojo.Schedule">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="date" property="date" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<insert id="insertschedule" parameterType="net.houselease.pojo.Schedule">
+		insert into schedule(date,content)
+		values(#{date},#{content})
 	</insert>
-<select id="selectAll" resultMap="BaseResultMap">
-   select *
-    from schedule
-    </select>
-<select id="selectbyid" resultType="net.houselease.pojo.Schedule" parameterType="Integer">
-   select *
-    from schedule where id=#{id}
-    </select>
-<delete id="deleteschedule" parameterType="Integer" >
-		delete from schedule where id=#{id}
+	<select id="selectAll" resultMap="BaseResultMap">
+		select *
+		from schedule
+	</select>
+	<select id="selectbyid" resultType="net.houselease.pojo.Schedule"
+		parameterType="Integer">
+		select *
+		from schedule where id=#{id}
+	</select>
+	<delete id="deleteschedule" parameterType="Integer">
+		delete from
+		schedule where id=#{id}
 	</delete>
-<update id="updateschedule" parameterType="net.houselease.pojo.Schedule">
-		update schedule set date=#{date},content=#{content}
+	<update id="updateschedule" parameterType="net.houselease.pojo.Schedule">
+		update schedule set
+		date=#{date},content=#{content}
 		where id=#{id}
-</update>
+	</update>
 </mapper>

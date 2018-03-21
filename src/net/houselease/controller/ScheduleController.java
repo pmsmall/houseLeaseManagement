@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import net.houselease.pojo.Houselist;
 import net.houselease.pojo.Schedule;
-import net.houselease.service.ScheduleService;
+import net.houselease.service.interfaces.ScheduleService;
 
 @Controller
 @RequestMapping("/schedule")

@@ -18,9 +18,9 @@ import net.houselease.pojo.Houselist;
 import net.houselease.pojo.User;
 import net.houselease.pojo.Userlist;
 import net.houselease.pojo.Zulist;
-import net.houselease.service.ApplyService;
-import net.houselease.service.HouselistService;
-import net.houselease.service.UserlistService;
+import net.houselease.service.interfaces.ApplyService;
+import net.houselease.service.interfaces.HouselistService;
+import net.houselease.service.interfaces.UserlistService;
 
 @Controller
 public class ApplyController {
@@ -74,9 +74,6 @@ public class ApplyController {
 	
 	@RequestMapping("/applychangehousestatus")
 	public String applychangehousestatus(HttpSession httpSession,Model model,String house_id)throws Exception{
-		User user1= (User) httpSession.getAttribute("user");
-		Integer user_id=user1.getId();
-		Userlist userlist=userlistService.findhasuserlist(user_id);
 		Houselist houselist=houselistService.findhouseid(house_id);
 		houselist.setStatus("已租赁");
 		houselistService.updatehousestatus(houselist);

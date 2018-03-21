@@ -1,10 +1,10 @@
-package net.houselease.dao;
+package net.houselease.service.interfaces;
 
 import java.util.List;
 
 import net.houselease.pojo.Checkout;
 
-public interface CheckoutMapper {
+public interface CheckoutService {
 	public void insertcheckout(Checkout checkout);
 
 	public List<Checkout> getallcheckout();

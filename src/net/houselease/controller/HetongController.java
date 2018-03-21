@@ -10,11 +10,11 @@ import net.houselease.pojo.Checkout;
 import net.houselease.pojo.Hetong;
 import net.houselease.pojo.Houselist;
 import net.houselease.pojo.Zulist;
-import net.houselease.service.ApplyService;
-import net.houselease.service.CheckoutService;
-import net.houselease.service.HetongService;
-import net.houselease.service.HouselistService;
-import net.houselease.service.ZulistService;
+import net.houselease.service.interfaces.ApplyService;
+import net.houselease.service.interfaces.CheckoutService;
+import net.houselease.service.interfaces.HetongService;
+import net.houselease.service.interfaces.HouselistService;
+import net.houselease.service.interfaces.ZulistService;
 @Controller
 @RequestMapping("/hetong")
 public class HetongController {

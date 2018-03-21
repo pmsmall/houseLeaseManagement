@@ -14,16 +14,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import net.houselease.pojo.Houselist;
 import net.houselease.pojo.Paid;
 import net.houselease.pojo.QueryVo;
 import net.houselease.pojo.Topaid;
 import net.houselease.pojo.User;
 import net.houselease.pojo.Userlist;
 import net.houselease.pojo.Zulist;
-import net.houselease.service.PaidService;
-import net.houselease.service.TopaidService;
-import net.houselease.service.UserlistService;
+import net.houselease.service.interfaces.PaidService;
+import net.houselease.service.interfaces.TopaidService;
+import net.houselease.service.interfaces.UserlistService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;;

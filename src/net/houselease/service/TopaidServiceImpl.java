@@ -11,6 +11,7 @@ import net.houselease.dao.TopaidMapper;
 import net.houselease.pojo.Paid;
 import net.houselease.pojo.QueryVo;
 import net.houselease.pojo.Topaid;
+import net.houselease.service.interfaces.TopaidService;
 
 @Service
 @Transactional
@@ -19,26 +20,30 @@ public class TopaidServiceImpl implements TopaidService {
 	private TopaidMapper topaidMapper;
 	@Autowired
 	private PaidMapper paidMapper;
+
 	@Override
 	public void inserttopaid(Topaid topaid) {
 		topaid.setStatus("租金未缴");
 		topaidMapper.inserttopaid(topaid);
 	}
+
 	@Override
 	public List<Topaid> findtopaid(QueryVo vo) {
-		List<Topaid> list=topaidMapper.findtopaid(vo);
+		List<Topaid> list = topaidMapper.findtopaid(vo);
 		return list;
 	}
+
 	@Override
 	public Topaid findbyid(Integer id) {
-		Topaid topaid=topaidMapper.findbyid(id);
+		Topaid topaid = topaidMapper.findbyid(id);
 		return topaid;
 	}
+
 	@Override
 	public void gotopay(Integer id, Paid paid) {
 		paidMapper.insertpaid(paid);
 		topaidMapper.deletetopaid(id);
-		
+
 	}
 
 }

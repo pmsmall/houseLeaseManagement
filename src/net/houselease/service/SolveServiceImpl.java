@@ -11,6 +11,8 @@ import net.houselease.dao.WrongMapper;
 import net.houselease.pojo.QueryVo;
 import net.houselease.pojo.Solve;
 import net.houselease.pojo.Wrong;
+import net.houselease.service.interfaces.SolveService;
+
 @Service
 @Transactional
 public class SolveServiceImpl implements SolveService {
@@ -18,43 +20,49 @@ public class SolveServiceImpl implements SolveService {
 	private SolveMapper solveMapper;
 	@Autowired
 	private WrongMapper wrongMapper;
+
 	@Override
 	public List<Solve> selectall(QueryVo vo) {
-		List<Solve> list=solveMapper.selectall(vo);
+		List<Solve> list = solveMapper.selectall(vo);
 		return list;
 	}
+
 	@Override
 	public Integer selectcount(QueryVo vo) {
-		Integer count=solveMapper.selectcount(vo);
+		Integer count = solveMapper.selectcount(vo);
 		return count;
 	}
+
 	@Override
 	public void deletesolve(Integer id) {
 		solveMapper.deletesolve(id);
-		
+
 	}
-	
+
 	@Override
 	public List<Wrong> findwrong(QueryVo vo) {
-		List<Wrong> list=wrongMapper.findwrong(vo);
+		List<Wrong> list = wrongMapper.findwrong(vo);
 		return list;
 	}
+
 	@Override
 	public Wrong findbyid(Integer id) {
-		Wrong wrong=wrongMapper.findbyid(id);
+		Wrong wrong = wrongMapper.findbyid(id);
 		return wrong;
 	}
+
 	@Override
 	public void insertwrong(Wrong wrong) {
 		wrong.setStatus("待处理");
 		wrongMapper.insertwrong(wrong);
-		
+
 	}
+
 	@Override
 	public void gotosolve(Integer id, Solve solve) {
 		solveMapper.insertsolve(solve);
 		wrongMapper.deletewrong(id);
-		
+
 	}
 
 }
