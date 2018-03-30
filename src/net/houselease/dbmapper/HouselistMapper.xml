@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="net.houselease.dao.HouselistMapper">
-	<resultMap id="BaseResultMap" type="Pojo.Houselist">
+	<resultMap id="BaseResultMap" type="net.houselease.pojo.Houselist">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="houseid" property="houseid" jdbcType="VARCHAR" />
 		<result column="area" property="area" jdbcType="DOUBLE" />
@@ -32,7 +32,7 @@
 		</where>
 
 	</select>
-	<select id="findhouselistByVoCount" parameterType="Pojo.QueryVo"
+	<select id="findhouselistByVoCount" parameterType="net.houselease.pojo.QueryVo"
 		resultType="int">
 		select count(*)
 		from houselist
@@ -55,35 +55,35 @@
 			</if>
 		</where>
 	</select>
-	<select id="findid" parameterType="Integer" resultType="Pojo.Houselist">
+	<select id="findid" parameterType="Integer" resultType="net.houselease.pojo.Houselist">
 		select *
 		from houselist where id=#{id}
 	</select>
-	<select id="findhouseid" parameterType="String" resultType="Pojo.Houselist">
+	<select id="findhouseid" parameterType="String" resultType="net.houselease.pojo.Houselist">
 		select * from houselist where houseid=#{houseid}
 	</select>
-	<select id="findhouseidupdate" parameterType="Pojo.Houselist"
-		resultType="Pojo.Houselist">
+	<select id="findhouseidupdate" parameterType="net.houselease.pojo.Houselist"
+		resultType="net.houselease.pojo.Houselist">
 		select * from houselist where houseid=#{houseid} and
 		id!=#{id}
 	</select>
-	<update id="updatehouse" parameterType="Pojo.Houselist">
+	<update id="updatehouse" parameterType="net.houselease.pojo.Houselist">
 		update houselist set
 		houseid=#{houseid},address=#{address},area=#{area},price=#{price},status=#{status}
 		where id=#{id}
 	</update>
-	<update id="updatehousestatus" parameterType="Pojo.Houselist">
+	<update id="updatehousestatus" parameterType="net.houselease.pojo.Houselist">
 		update houselist
 		set status=#{status}
 		where id=#{id}
 	</update>
-	<update id="updatestatus" parameterType="Pojo.Houselist">
+	<update id="updatestatus" parameterType="net.houselease.pojo.Houselist">
 		update houselist set
 		status=#{status}
 		where houseid=#{houseid}
 	</update>
 
-	<insert id="inserthouse" parameterType="Pojo.Houselist">
+	<insert id="inserthouse" parameterType="net.houselease.pojo.Houselist">
 		insert into houselist(houseid,address,area,price,status)
 		values(#{houseid},#{address},#{area},#{price},#{status})
 	</insert>

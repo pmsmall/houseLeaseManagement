@@ -2,9 +2,9 @@ package net.houselease.controller;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,9 +23,10 @@ import net.houselease.service.interfaces.ZulistService;
 @Controller
 @RequestMapping("/zulist")
 public class ZulistController {
-	@Autowired
+	@Resource
 	private ZulistService zulistService;
-	@Autowired
+
+	@Resource
 	private UserlistService userlistService;
 
 	// 跳到增添合同的页面

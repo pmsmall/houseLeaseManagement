@@ -8,7 +8,7 @@ import net.houselease.dao.HetongMapper;
 import net.houselease.pojo.Hetong;
 import net.houselease.service.interfaces.HetongService;
 
-@Service
+@Service("hetongService")
 @Transactional
 public class HetongServiceImpl implements HetongService {
 	@Autowired

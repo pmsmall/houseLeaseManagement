@@ -10,7 +10,7 @@ import net.houselease.dao.UserlistMapper;
 import net.houselease.pojo.Userlist;
 import net.houselease.service.interfaces.UserlistService;
 
-@Service
+@Service("userlistService")
 @Transactional
 public class UserlistServiceImpl implements UserlistService {
 

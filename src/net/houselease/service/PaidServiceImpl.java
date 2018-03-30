@@ -13,7 +13,7 @@ import net.houselease.pojo.QueryVo;
 import net.houselease.pojo.Zulist;
 import net.houselease.service.interfaces.PaidService;
 
-@Service
+@Service("paidService")
 @Transactional
 public class PaidServiceImpl implements PaidService {
 	@Autowired

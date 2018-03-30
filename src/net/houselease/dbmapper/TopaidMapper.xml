@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="net.houselease.dao.TopaidMapper">
-	<resultMap id="BaseResultMap" type="Pojo.Topaid">
+	<resultMap id="BaseResultMap" type="net.houselease.pojo.Topaid">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="house_id" property="house_id" jdbcType="VARCHAR" />
 		<result column="address" property="address" jdbcType="VARCHAR" />
@@ -12,12 +12,12 @@
 		<result column="status" property="status" jdbcType="VARCHAR" />
 	</resultMap>
 
-	<insert id="inserttopaid" parameterType="Pojo.Topaid">
+	<insert id="inserttopaid" parameterType="net.houselease.pojo.Topaid">
 		insert into topaid(house_id,address,price,date,status,name,userlist_id)
 		values(#{house_id},#{address},#{price},#{date},#{status},#{name},#{userlist_id})
 	</insert>
 
-	<select id="findtopaid" parameterType="Pojo.QueryVo" resultMap="BaseResultMap">
+	<select id="findtopaid" parameterType="net.houselease.pojo.QueryVo" resultMap="BaseResultMap">
 		select * from topaid
 		<where>
 
@@ -27,7 +27,7 @@
 
 		</where>
 	</select>
-	<select id="findbyid" parameterType="Integer" resultType="Pojo.Topaid">
+	<select id="findbyid" parameterType="Integer" resultType="net.houselease.pojo.Topaid">
 		select
 		* from topaid
 		where id=#{id}

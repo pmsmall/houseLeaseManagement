@@ -2,9 +2,9 @@ package net.houselease.controller;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,13 +27,16 @@ import net.houselease.service.interfaces.ZulistService;
 @Controller
 @RequestMapping("/wrong")
 public class WrongController {
-	@Autowired
+	@Resource
 	private SolveService solveService;
-	@Autowired
+
+	@Resource
 	private UserlistService userlistService;
-	@Autowired
+
+	@Resource
 	private PaidService paidService;
-	@Autowired
+
+	@Resource
 	private ZulistService zulistService;
 
 	// 管理员查找所有已处理的报障

@@ -9,13 +9,13 @@
 <head>
     <meta charset="UTF-8">
     <title>房屋租赁系统</title>
-    <link rel="stylesheet" type="text/css" href="/text2/css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="/text2/css/main.css"/>
-    <script type="text/javascript" src="/text2/js/libs/modernizr.min.js"></script>
-    <script type="text/javascript" src="/text2/js/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript" src="/text2/js/jquery-ui-datepicker.js"></script>
-    <script type="text/javascript" src="/text2/js/jquery.validate.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/text2/css/jquery-ui.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <script type="text/javascript" src="/js/libs/modernizr.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-ui-datepicker.js"></script>
+    <script type="text/javascript" src="/js/jquery.validate.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css"/>
    <style>
    
 
@@ -68,7 +68,7 @@
 </div>
 <div class="result-content">
 <div class="sidebar-title">
-        <form action="/text2/schedule/updateschedule.action" method="post" id="myform" name="myform" enctype="multipart/form-data" >
+        <form action="/schedule/updateschedule.action" method="post" id="myform" name="myform" enctype="multipart/form-data" >
                     <table class="insert-tab" width="100%">
                         <tbody>
                         	<input type="hidden" id="id" name="id" value="${schedule.id}"/>

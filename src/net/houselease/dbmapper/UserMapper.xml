@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="net.houselease.dao.UserMapper">
-	<resultMap id="BaseResultMap" type="Pojo.User">
+	<resultMap id="BaseResultMap" type="net.houselease.pojo.User">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="username" property="username" jdbcType="VARCHAR" />
 		<result column="password" property="password" jdbcType="VARCHAR" />
@@ -75,7 +75,7 @@
 		id, username, password, type
 	</sql>
 	<select id="selectByExample" resultMap="BaseResultMap"
-		parameterType="Pojo.UserExample">
+		parameterType="net.houselease.pojo.UserExample">
 		select
 		<if test="distinct">
 			distinct
@@ -90,7 +90,7 @@
 		</if>
 
 	</select>
-	<select id="selectByUser" resultType="Pojo.User" parameterType="Pojo.User">
+	<select id="selectByUser" resultType="net.houselease.pojo.User" parameterType="net.houselease.pojo.User">
 		select *
 		from user
 		<where>
@@ -118,20 +118,20 @@
 		delete from user
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
-	<delete id="deleteByExample" parameterType="Pojo.UserExample">
+	<delete id="deleteByExample" parameterType="net.houselease.pojo.UserExample">
 		delete from user
 		<if test="_parameter != null">
 			<include refid="Example_Where_Clause" />
 		</if>
 	</delete>
-	<insert id="insert" parameterType="Pojo.User">
+	<insert id="insert" parameterType="net.houselease.pojo.User">
 		insert into user (id, username, password,
 		type)
 		values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR},
 		#{type,jdbcType=VARCHAR})
 	</insert>
-	<insert id="insertSelective" parameterType="Pojo.User">
+	<insert id="insertSelective" parameterType="net.houselease.pojo.User">
 		insert into user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -162,7 +162,7 @@
 			</if>
 		</trim>
 	</insert>
-	<select id="countByExample" parameterType="Pojo.UserExample"
+	<select id="countByExample" parameterType="net.houselease.pojo.UserExample"
 		resultType="java.lang.Integer">
 		select count(*) from user
 		<if test="_parameter != null">
@@ -199,7 +199,7 @@
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
 	</update>
-	<update id="updateByPrimaryKeySelective" parameterType="Pojo.User">
+	<update id="updateByPrimaryKeySelective" parameterType="net.houselease.pojo.User">
 		update user
 		<set>
 			<if test="username != null">
@@ -214,7 +214,7 @@
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
-	<update id="updateByPrimaryKey" parameterType="Pojo.User">
+	<update id="updateByPrimaryKey" parameterType="net.houselease.pojo.User">
 		update user
 		set username = #{username,jdbcType=VARCHAR},
 		password = #{password,jdbcType=VARCHAR},

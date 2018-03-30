@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="net.houselease.dao.PaidMapper">
-	<resultMap id="BaseResultMap" type="Pojo.Paid">
+	<resultMap id="BaseResultMap" type="net.houselease.pojo.Paid">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="house_id" property="house_id" jdbcType="VARCHAR" />
 		<result column="address" property="address" jdbcType="VARCHAR" />
@@ -13,7 +13,7 @@
 		<result column="status" property="status" jdbcType="VARCHAR" />
 	</resultMap>
 
-	<select id="selectall" resultMap="BaseResultMap" parameterType="Pojo.QueryVo">
+	<select id="selectall" resultMap="BaseResultMap" parameterType="net.houselease.pojo.QueryVo">
 		select *
 		from paid
 		<where>
@@ -33,7 +33,7 @@
 		</where>
 
 	</select>
-	<select id="selectsum" resultType="Double" parameterType="Pojo.QueryVo">
+	<select id="selectsum" resultType="Double" parameterType="net.houselease.pojo.QueryVo">
 		select SUM(price)
 		from paid
 		<where>
@@ -57,7 +57,7 @@
 		delete from paid
 		where id=#{id}
 	</delete>
-	<insert id="insertpaid" parameterType="Pojo.Paid">
+	<insert id="insertpaid" parameterType="net.houselease.pojo.Paid">
 		insert into
 		paid(house_id,address,price,date,paydate,status,name,userlist_id)
 		values(#{house_id},#{address},#{price},#{date},#{paydate},#{status},#{name},#{userlist_id})

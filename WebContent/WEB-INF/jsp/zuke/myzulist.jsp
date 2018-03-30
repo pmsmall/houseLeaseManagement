@@ -11,10 +11,10 @@
 <head>
 <meta charset="UTF-8">
 <title>房屋租赁系统</title>
-<link rel="stylesheet" type="text/css" href="/text2/css/common.css" />
-<link rel="stylesheet" type="text/css" href="/text2/css/main.css" />
-<script type="text/javascript" src="/text2/js/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="/text2/js/libs/modernizr.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" />
+<script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/js/libs/modernizr.min.js"></script>
 </script>
 <style type="text/css">
 </style>
@@ -32,7 +32,7 @@
 			<h1>我的租赁</h1>
 		</div>
 		<form id="houseForm" name="houseForm"
-			action="/text2/zulist/myzulist.action" method=post>
+			action="/zulist/myzulist.action" method=post>
 			<div class="result-title">
 				<div class="result-list"></div>
 			</div>
@@ -68,9 +68,9 @@
 									<td>${zulist.price}</td>
 
 									<td><a class="link-update"
-										href="/text2/hetong/zukeseehetong.action?house_id=${zulist.house_id }">查看合同</a>
+										href="/hetong/zukeseehetong.action?house_id=${zulist.house_id }">查看合同</a>
 										&nbsp;&nbsp; <a class="link-del"
-										href="/text2/applyout/insertapplyout.action?house_id=${zulist.house_id }"
+										href="/applyout/insertapplyout.action?house_id=${zulist.house_id }"
 										onclick="return window.confirm('确定要申请退租吗？')">申请退租</a></td>
 								
 							</tr>

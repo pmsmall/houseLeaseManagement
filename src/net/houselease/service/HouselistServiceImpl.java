@@ -9,7 +9,7 @@ import net.houselease.dao.HouselistMapper;
 import net.houselease.pojo.Houselist;
 import net.houselease.service.interfaces.HouselistService;
 
-@Service
+@Service("houselistService")
 public class HouselistServiceImpl implements HouselistService {
 
 	@Autowired

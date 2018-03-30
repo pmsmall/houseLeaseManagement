@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="net.houselease.dao.CheckoutMapper">
-	<resultMap id="checkoutResultMap" type="net.houselease.pojo.Checkout">
+	<resultMap id="BaseResultMap" type="net.houselease.pojo.Checkout">
 		<id column="cid" property="id" jdbcType="INTEGER" />
 		<result column="house_id" property="house_id" jdbcType="VARCHAR" />
 		<result column="address" property="address" jdbcType="VARCHAR" />
@@ -22,7 +22,7 @@
 		insert into checkout(house_id,address,userlist_id,status)
 		values(#{house_id},#{address},#{userlist_id},#{status})
 	</insert>
-	<select id="getallcheckout" resultMap="checkoutResultMap">
+	<select id="getallcheckout" resultMap="BaseResultMap">
 		SELECT
 		c.*, u.*
 		FROM

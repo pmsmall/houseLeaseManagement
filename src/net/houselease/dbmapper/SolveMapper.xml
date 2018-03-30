@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="net.houselease.dao.SolveMapper">
-	<resultMap id="BaseResultMap" type="Pojo.Solve">
+	<resultMap id="BaseResultMap" type="net.houselease.pojo.Solve">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="house_id" property="house_id" jdbcType="VARCHAR" />
 		<result column="address" property="address" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
 		<result column="status" property="status" jdbcType="VARCHAR" />
 	</resultMap>
 
-	<select id="selectall" resultMap="BaseResultMap" parameterType="Pojo.QueryVo">
+	<select id="selectall" resultMap="BaseResultMap" parameterType="net.houselease.pojo.QueryVo">
 		select *
 		from solve
 		<where>
@@ -32,7 +32,7 @@
 		</where>
 
 	</select>
-	<select id="selectcount" resultType="Integer" parameterType="Pojo.QueryVo">
+	<select id="selectcount" resultType="Integer" parameterType="net.houselease.pojo.QueryVo">
 		select count(*)
 		from solve
 		<where>
@@ -59,7 +59,7 @@
 		delete from
 		solve where id=#{id}
 	</delete>
-	<insert id="insertsolve" parameterType="Pojo.Solve">
+	<insert id="insertsolve" parameterType="net.houselease.pojo.Solve">
 		insert into solve(house_id,address,date,detail,status,name,userlist_id)
 		values(#{house_id},#{address},#{date},#{detail},#{status},#{name},#{userlist_id})
 	</insert>

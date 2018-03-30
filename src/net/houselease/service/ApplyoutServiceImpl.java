@@ -2,6 +2,8 @@ package net.houselease.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,11 +18,11 @@ import net.houselease.pojo.Checkout;
 import net.houselease.pojo.Zulist;
 import net.houselease.service.interfaces.ApplyoutService;
 
-@Service
+@Service("applyoutService")
 @Transactional
 public class ApplyoutServiceImpl implements ApplyoutService {
 
-	@Autowired
+	@Resource
 	private ApplyoutMapper applyoutMapper;
 	@Autowired
 	private HouselistMapper houselistMapper;

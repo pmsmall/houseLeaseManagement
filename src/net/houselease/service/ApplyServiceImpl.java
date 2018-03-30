@@ -12,7 +12,7 @@ import net.houselease.pojo.Apply;
 import net.houselease.pojo.Houselist;
 import net.houselease.service.interfaces.ApplyService;
 
-@Service
+@Service("applyService")
 @Transactional
 public class ApplyServiceImpl implements ApplyService {
 

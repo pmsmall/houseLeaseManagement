@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="net.houselease.dao.ApplyoutMapper">
-	<resultMap id="applyoutResultMap" type="net.houselease.pojo.Applyout">
+	<resultMap id="BaseResultMap" type="net.houselease.pojo.Applyout">
 		<id column="aoid" property="id" jdbcType="INTEGER" />
 		<result column="house_id" property="house_id" jdbcType="VARCHAR" />
 		<result column="address" property="address" jdbcType="VARCHAR" />
@@ -22,7 +22,7 @@
 		parameterType="Integer">
 		select * from applyout where aoid=#{aoid}
 	</select>
-	<select id="findallapplyout" resultMap="applyoutResultMap">
+	<select id="findallapplyout" resultMap="BaseResultMap">
 		SELECT
 		a.*, u.*
 		FROM

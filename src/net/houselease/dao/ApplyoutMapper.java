@@ -2,8 +2,11 @@ package net.houselease.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import net.houselease.pojo.Applyout;
 
+@Service("apploutMapper")
 public interface ApplyoutMapper {
 	public void insertapplyout(Applyout applyout);
 

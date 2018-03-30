@@ -11,10 +11,10 @@
 <head>
     <meta charset="UTF-8">
     <title>房屋租赁系统</title>
-    <link rel="stylesheet" type="text/css" href="/text2/css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="/text2/css/main.css"/>
-    <script type="text/javascript" src="/text2/js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="/text2/js/libs/modernizr.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/js/libs/modernizr.min.js"></script>
 	</script>
 	<style type="text/css">
 	
@@ -68,11 +68,11 @@
 										<td>${apply.userlist.phone}</td>
 										<td>
 										<a class="link-update"
-											href="/text2/zulist/toaddhetong.action?house_id=${apply.house_id}">同意租赁</a>
+											href="/zulist/toaddhetong.action?house_id=${apply.house_id}">同意租赁</a>
 											&nbsp;&nbsp; 
 											<input type="hidden" name="id" value="${houselist.id}"/>
 											<a class="link-del"
-											 href="/text2/refuseapply.action?house_id=${apply.house_id}"
+											 href="/refuseapply.action?house_id=${apply.house_id}"
 											onclick="return window.confirm('确定要拒绝该租客的申请吗？')">拒绝租赁</a></td>
 										
 											

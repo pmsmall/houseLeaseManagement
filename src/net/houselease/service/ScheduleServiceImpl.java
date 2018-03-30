@@ -10,7 +10,7 @@ import net.houselease.dao.ScheduleMapper;
 import net.houselease.pojo.Schedule;
 import net.houselease.service.interfaces.ScheduleService;
 
-@Service
+@Service("scheduleService")
 @Transactional
 public class ScheduleServiceImpl implements ScheduleService {
 	@Autowired

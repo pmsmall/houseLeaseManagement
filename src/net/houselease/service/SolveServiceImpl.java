@@ -13,7 +13,7 @@ import net.houselease.pojo.Solve;
 import net.houselease.pojo.Wrong;
 import net.houselease.service.interfaces.SolveService;
 
-@Service
+@Service("solveService")
 @Transactional
 public class SolveServiceImpl implements SolveService {
 	@Autowired

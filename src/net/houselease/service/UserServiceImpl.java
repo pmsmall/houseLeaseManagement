@@ -9,7 +9,7 @@ import net.houselease.dao.UserMapper;
 import net.houselease.pojo.*;
 import net.houselease.service.interfaces.UserService;
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService {
 
 	@Autowired

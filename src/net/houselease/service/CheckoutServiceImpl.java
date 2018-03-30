@@ -10,7 +10,7 @@ import net.houselease.dao.CheckoutMapper;
 import net.houselease.pojo.Checkout;
 import net.houselease.service.interfaces.CheckoutService;
 
-@Service
+@Service("checkoutService")
 @Transactional
 public class CheckoutServiceImpl implements CheckoutService {
 

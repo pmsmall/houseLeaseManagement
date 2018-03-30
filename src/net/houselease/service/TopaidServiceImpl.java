@@ -13,7 +13,7 @@ import net.houselease.pojo.QueryVo;
 import net.houselease.pojo.Topaid;
 import net.houselease.service.interfaces.TopaidService;
 
-@Service
+@Service("topaidService")
 @Transactional
 public class TopaidServiceImpl implements TopaidService {
 	@Autowired

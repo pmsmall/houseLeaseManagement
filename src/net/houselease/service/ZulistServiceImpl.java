@@ -9,7 +9,7 @@ import net.houselease.dao.ZulistMapper;
 import net.houselease.pojo.Zulist;
 import net.houselease.service.interfaces.ZulistService;
 
-@Service
+@Service("zulistService")
 public class ZulistServiceImpl implements ZulistService {
 
 	@Autowired

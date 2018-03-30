@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
@@ -9,124 +9,111 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>房屋租赁系统</title>
-    <link rel="stylesheet" type="text/css" href="/text2/css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="/text2/css/main.css"/>
-    <script type="text/javascript" src="/text2/js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="/text2/js/libs/modernizr.min.js"></script>
-	</script>
-	<style type="text/css">
-	
-	
-	</style>
-	<script type="text/javascript">
-	var error="${param.error}";
-	if(error=="insertwrong"){
+<meta charset="UTF-8">
+<title>房屋租赁系统</title>
+<link rel="stylesheet" type="text/css" href="/css/common.css" />
+<link rel="stylesheet" type="text/css" href="/css/main.css" />
+<script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/js/libs/modernizr.min.js"></script>
+</script>
+<style type="text/css">
+</style>
+<script type="text/javascript">
+	var error = "${param.error}";
+	if (error == "insertwrong") {
 
-	alert("报障信息已添加，管理员将收到你的请求。");
+		alert("报障信息已添加，管理员将收到你的请求。");
 	}
-		
-	</script>
+</script>
 </head>
 <body>
-<div>
-<div class="result-title">
-<h1>我要报障</h1>
-</div>
-	<form id="houseForm" name="houseForm"
-		action="/text2/wrong/showaddwrong.action"
-		method=post >
-						 <div class="result-title">
-                    <div class="result-list">
-                      
-                        
-                    </div>
-                </div>
+	<div>
+		<div class="result-title">
+			<h1>我要报障</h1>
+		</div>
+		<form id="houseForm" name="houseForm"
+			action="/wrong/showaddwrong.action" method=post>
+			<div class="result-title">
+				<div class="result-list"></div>
+			</div>
 
-					<div class="result-content">
-						<table id=grid
-							class="result-tab" width="100%">
-							<tbody>
-								<tr
-									style="FONT-WEIGHT: bold; FONT-STYLE: normal; BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
-									<td>房屋id</td>
-									<td>地址</td>
-									<td>租金</td>
-									<td>租赁人</td>
-									<td>租赁人身份证号</td>
-									<td>租赁人联系电话</td>
-									<td>操作</td>
-									
-								</tr>
-								<c:forEach items="${zulist}" var="zulist">
-								
-									<tr
-										style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-										<td>${zulist.house_id }</td>
+			<div class="result-content">
+				<table id=grid class="result-tab" width="100%">
+					<tbody>
+						<tr
+							style="FONT-WEIGHT: bold; FONT-STYLE: normal; BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
+							<td>房屋id</td>
+							<td>地址</td>
+							<td>租金</td>
+							<td>租赁人</td>
+							<td>租赁人身份证号</td>
+							<td>租赁人联系电话</td>
+							<td>操作</td>
 
-										<td>${zulist.address}</td>
-										
-										<td>${zulist.price}</td>
-										<td>${zulist.userlist.name}</td>
-										<td>${zulist.userlist.idcard}</td>
-										<td>${zulist.userlist.phone}</td>
-										<td><a class="link-update"
-											href="/text2/wrong/addwrong.action?id=${zulist.zid }">报障</a>
-											&nbsp;&nbsp; 
-											
-											
-										
-										
-									</tr>
+						</tr>
+						<c:forEach items="${zulist}" var="zulist">
 
-								</c:forEach>
+							<tr
+								style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
+								<td>${zulist.house_id }</td>
 
-							</tbody>
-						</table>
-						</div>
-					
+								<td>${zulist.address}</td>
 
-						<tr>
-						<tr>
-							<span id=pagelink>
-								<div style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right; margin-top:10px">
-									共[<B>${p.total}</B>]条记录，共[<B>${p.pages}</B>]页
-									,
+								<td>${zulist.price}</td>
+								<td>${zulist.userlist.name}</td>
+								<td>${zulist.userlist.idcard}</td>
+								<td>${zulist.userlist.phone}</td>
+								<td><a class="link-update"
+									href="/wrong/addwrong.action?id=${zulist.zid }">报障</a>
+									&nbsp;&nbsp;
+							</tr>
 
-									<c:if test="${ p.pageNum > 1 }">
+						</c:forEach>
+
+					</tbody>
+				</table>
+			</div>
+
+
+			<tr>
+			<tr>
+				<span id=pagelink>
+					<div
+						style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right; margin-top: 10px">
+						共[<B>${p.total}</B>]条记录，共[<B>${p.pages}</B>]页 ,
+
+						<c:if test="${ p.pageNum > 1 }">
 													[<A href="javascript:to_page(${p.prePage})">前一页</A>]
 												</c:if>
-										<input type="hidden" name="page" id="page" value=""/>
-									第<B>${p.pageNum}</B>页
+						<input type="hidden" name="page" id="page" value="" /> 第<B>${p.pageNum}</B>页
 
-									<c:if test="${ p.pageNum < p.pages }">
+						<c:if test="${ p.pageNum < p.pages }">
 													[<A href="javascript:to_page(${p.nextPage})">后一页</A>] 
 												</c:if>
 
-									
-								</div>
-							</span>
-						
-						</tr>
-						</tbody>
-					
-					
 
-					
-						</tbody>
-				
+					</div>
+				</span>
 
-					</form>
-</div>
- <script language=javascript>
-	// 提交分页的查询的表单
-	function to_page(page) {
-		if (page) {
-			$("#page").val(page);
+			</tr>
+			</tbody>
+
+
+
+
+			</tbody>
+
+
+		</form>
+	</div>
+	<script language=javascript>
+		// 提交分页的查询的表单
+		function to_page(page) {
+			if (page) {
+				$("#page").val(page);
+			}
+			document.houseForm.submit();
 		}
-		document.houseForm.submit();
-	}
-</script>
+	</script>
 </body>
 </html>

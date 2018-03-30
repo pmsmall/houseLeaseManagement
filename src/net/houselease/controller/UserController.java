@@ -1,8 +1,8 @@
 package net.houselease.controller;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,10 +11,13 @@ import net.houselease.pojo.User;
 import net.houselease.service.interfaces.UserService;
 
 @Controller
-
 public class UserController {
 
-	@Autowired
+	static {
+		System.out.println("Init class UserController");
+	}
+
+	@Resource
 	private UserService userService;
 
 	@RequestMapping("/login")
