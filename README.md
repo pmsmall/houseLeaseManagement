@@ -1,4 +1,4 @@
-# house
+# House Lease Management System
 基于ssm的房屋租赁管理系统
 功能介绍
 房源信息模块： 
@@ -26,8 +26,6 @@ Tomcat服务器部署
 
 项目功能部分截图
 登录
-管理员帐户:admin 密码：12345
-租客帐户：zyx 密码：123456
 
 ![Alt text](https://github.com/chiuwingyan/house/blob/master/img/1.png)
 ![Alt text](https://github.com/chiuwingyan/house/blob/master/img/2.png)
