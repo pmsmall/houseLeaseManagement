@@ -11,10 +11,10 @@
 <head>
     <meta charset="UTF-8">
     <title>房屋租赁系统</title>
-    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
-    <script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="/js/libs/modernizr.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%=path%>/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="<%=path%>/css/main.css"/>
+    <script type="text/javascript" src="<%=path%>/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="<%=path%>/js/libs/modernizr.min.js"></script>
 	</script>
 	<style type="text/css">
 	
@@ -60,11 +60,11 @@
 										
 										<td>
 										<a class="link-update"
-											href="/schedule/toupdate.action?id=${schedule.id}">修改</a>
+											href="<%=path%>/schedule/toupdate.action?id=${schedule.id}">修改</a>
 											&nbsp;&nbsp; 
 											<input type="hidden" name="id" value="${houselist.id}"/>
 											<a class="link-del"
-											 href="/schedule/deleteschedule.action?id=${schedule.id}"
+											 href="<%=path%>/schedule/deleteschedule.action?id=${schedule.id}"
 											 onclick="return window.confirm('确定删除吗？')"
 											>删除</a></td>
 										

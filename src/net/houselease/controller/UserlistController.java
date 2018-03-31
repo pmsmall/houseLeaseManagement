@@ -26,9 +26,13 @@ public class UserlistController {
 	@RequestMapping("/findhasuserlist")
 	public String findhasuserlist(HttpSession httpSession, Model model) throws Exception {
 		User user1 = (User) httpSession.getAttribute("user");
+		if (user1 == null)
+			return "redirect:/login";
 		Integer user_id = user1.getId();
 		Userlist userlist = userlistService.findhasuserlist(user_id);
-		model.addAttribute("userlist", userlist);
+		if (userlist != null) {
+			model.addAttribute("userlist", userlist);
+		}
 		model.addAttribute("mainPage", "updateuserlist.jsp");
 		return "zuke/main";
 

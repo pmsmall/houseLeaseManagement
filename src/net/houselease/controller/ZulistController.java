@@ -58,16 +58,20 @@ public class ZulistController {
 	public String myzulist(Model model, HttpSession httpSession,
 			@RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) throws Exception {
-
 		User user1 = (User) httpSession.getAttribute("user");
+		if (user1 == null)
+			return "direct:/login";
 		Userlist userlist = userlistService.findhasuserlist(user1.getId());
-		PageHelper.startPage(page, pageSize);
-		List<Userlist> list = userlistService.getUserzuList(userlist.getId());
-		PageInfo<Userlist> p = new PageInfo<Userlist>(list);
-		model.addAttribute("userlistzu", list);
-		model.addAttribute("p", p);
+		if (userlist != null) {
+			PageHelper.startPage(page, pageSize);
+			List<Userlist> list = userlistService.getUserzuList(userlist.getId());
+			if (list != null) {
+				PageInfo<Userlist> p = new PageInfo<Userlist>(list);
+				model.addAttribute("userlistzu", list);
+				model.addAttribute("p", p);
+			}
+		}
 		model.addAttribute("mainPage", "myzulist.jsp");
-
 		return "zuke/main";
 	}
 

@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import net.houselease.pojo.User;
 import net.houselease.service.interfaces.UserService;
+import net.houselease.staticData.Dictionary;
 
 @Controller
+@RequestMapping("")
 public class UserController {
 
 	static {
@@ -22,18 +24,16 @@ public class UserController {
 
 	@RequestMapping("/login")
 	public String userList() throws Exception {
-
 		return "login";
-
 	}
 
 	@RequestMapping("/logincheck")
 	public String login(User user, Model model, HttpSession httpSession) throws Exception {
-
+		System.out.println(user);
 		User user1 = userService.login(user);
 
 		if (user1 != null) {
-			httpSession.setAttribute("user", user1);
+			httpSession.setAttribute(Dictionary.user, user1);
 			if (user1.getType().equals("zuke")) {
 				return "zuke/main";
 			} else {

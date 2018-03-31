@@ -23,14 +23,15 @@ import net.houselease.service.interfaces.HouselistService;
 import net.houselease.service.interfaces.UserlistService;
 
 @Controller
+@RequestMapping("")
 public class ApplyController {
-	
+
 	@Resource
 	private UserlistService userlistService;
-	
+
 	@Resource
 	private HouselistService houselistService;
-	
+
 	@Resource
 	private ApplyService applyService;
 
@@ -106,12 +107,18 @@ public class ApplyController {
 			@RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
 		User user1 = (User) httpSession.getAttribute("user");
-		Userlist userlist = userlistService.findhasuserlist(user1.getId());
+		if (user1 == null)
+			return "redirect:/login";
 		PageHelper.startPage(page, pageSize);
-		List<Userlist> list = userlistService.getmyapply(userlist.getId());
-		PageInfo<Userlist> p = new PageInfo<Userlist>(list);
-		model.addAttribute("userlist", list);
-		model.addAttribute("p", p);
+		Userlist userlist = userlistService.findhasuserlist(user1.getId());
+		if (userlist != null) {
+			List<Userlist> list = userlistService.getmyapply(userlist.getId());
+			if (list != null) {
+				PageInfo<Userlist> p = new PageInfo<Userlist>(list);
+				model.addAttribute("userlist", list);
+				model.addAttribute("p", p);
+			}
+		}
 		model.addAttribute("mainPage", "myapply.jsp");
 		return "zuke/main";
 	}

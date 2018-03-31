@@ -11,10 +11,10 @@
 <head>
     <meta charset="UTF-8">
     <title>房屋租赁系统</title>
-    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
-    <script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="/js/libs/modernizr.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%=path%>/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="<%=path%>/css/main.css"/>
+    <script type="text/javascript" src="<%=path%>/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="<%=path%>/js/libs/modernizr.min.js"></script>
 	</script>
 	<style type="text/css">
 	
@@ -72,7 +72,7 @@
 										<td>${zulist.userlist.idcard}</td>
 										<td>${zulist.userlist.phone}</td>
 										<td><a class="link-update"
-											href="/paid/addpaid.action?id=${zulist.zid }">收租</a>
+											href="<%=path%>/paid/addpaid.action?id=${zulist.zid }">收租</a>
 											&nbsp;&nbsp; 
 											
 											

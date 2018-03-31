@@ -18,6 +18,7 @@ import net.houselease.pojo.User;
 import net.houselease.pojo.Userlist;
 import net.houselease.service.interfaces.CheckoutService;
 import net.houselease.service.interfaces.UserlistService;
+import net.houselease.staticData.Dictionary;
 
 @Controller
 @RequestMapping("/checkout")
@@ -30,7 +31,12 @@ public class CheckoutController {
 
 	@RequestMapping("/getallcheckout")
 	public String getallcheckout(Model model, @RequestParam(required = false, defaultValue = "1") Integer page,
-			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
+			@RequestParam(required = false, defaultValue = "2") Integer pageSize, HttpSession httpSession) {
+		User user = (User) httpSession.getAttribute(Dictionary.user);
+		System.out.println(user);
+		if (user == null) {
+			return "redirect:/login";
+		}
 		PageHelper.startPage(page, pageSize);
 		List<Checkout> checkout = checkoutService.getallcheckout();
 		PageInfo<Checkout> p = new PageInfo<Checkout>(checkout);
@@ -59,12 +65,20 @@ public class CheckoutController {
 			@RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
 		User user1 = (User) httpSession.getAttribute("user");
-		Userlist userlist = userlistService.findhasuserlist(user1.getId());
+		if (user1 == null)
+			return "redirect:/login";
 		PageHelper.startPage(page, pageSize);
-		List<Userlist> list = userlistService.getmycheckout(userlist.getId());
-		PageInfo<Userlist> p = new PageInfo<Userlist>(list);
-		model.addAttribute("p", p);
-		model.addAttribute("userlistcheck", list);
+
+		Userlist userlist = userlistService.findhasuserlist(user1.getId());
+		if (userlist != null) {
+			List<Userlist> list = userlistService.getmycheckout(userlist.getId());
+			if (list != null) {
+				PageInfo<Userlist> p = new PageInfo<Userlist>(list);
+				model.addAttribute("p", p);
+				model.addAttribute("userlistcheck", list);
+			}
+		}
+
 		model.addAttribute("mainPage", "mycheckout.jsp");
 		return "zuke/main";
 	}

@@ -61,18 +61,25 @@ public class WrongController {
 			@RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
 		User user1 = (User) httpSession.getAttribute("user");
-		Userlist userlist = userlistService.findhasuserlist(user1.getId());
+		if (user1 == null)
+			return "redirect:/login";
 
-		vo.setUserlist_id(userlist.getId());
+		Userlist userlist = userlistService.findhasuserlist(user1.getId());
 		PageHelper.startPage(page, pageSize);
-		List<Solve> list = solveService.selectall(vo);
-		PageInfo<Solve> p = new PageInfo<Solve>(list);
-		Integer count = solveService.selectcount(vo);
-		model.addAttribute("solve", list);
-		model.addAttribute("count", count);
-		model.addAttribute("p", p);
+		if (userlist != null) {
+			vo.setUserlist_id(userlist.getId());
+			List<Solve> list = solveService.selectall(vo);
+			if (list != null) {
+				PageInfo<Solve> p = new PageInfo<Solve>(list);
+				Integer count = solveService.selectcount(vo);
+				model.addAttribute("solve", list);
+				model.addAttribute("count", count);
+				model.addAttribute("p", p);
+			}
+			model.addAttribute("vo", vo);
+		}
 		model.addAttribute("mainPage", "mysolve.jsp");
-		model.addAttribute("vo", vo);
+
 		return "zuke/main";
 	}
 
@@ -96,12 +103,18 @@ public class WrongController {
 			@RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) throws Exception {
 		User user1 = (User) httpSession.getAttribute("user");
+		if (user1 == null)
+			return "redirect:/login";
 		Userlist userlist = userlistService.findhasuserlist(user1.getId());
 		PageHelper.startPage(page, pageSize);
-		List<Zulist> list = zulistService.findzulistbyuid(userlist.getId());
-		PageInfo<Zulist> p = new PageInfo<Zulist>(list);
-		model.addAttribute("zulist", list);
-		model.addAttribute("p", p);
+		if (userlist != null) {
+			List<Zulist> list = zulistService.findzulistbyuid(userlist.getId());
+			if (list != null) {
+				PageInfo<Zulist> p = new PageInfo<Zulist>(list);
+				model.addAttribute("zulist", list);
+				model.addAttribute("p", p);
+			}
+		}
 		model.addAttribute("mainPage", "showaddwrong.jsp");
 		return "zuke/main";
 	}
@@ -144,14 +157,22 @@ public class WrongController {
 			@RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
 		User user1 = (User) httpSession.getAttribute("user");
+		if (user1 == null)
+			return "redirect:/login";
 		Userlist userlist = userlistService.findhasuserlist(user1.getId());
 		QueryVo vo = new QueryVo();
-		vo.setUserlist_id(userlist.getId());
 		PageHelper.startPage(page, pageSize);
-		List<Wrong> list = solveService.findwrong(vo);
-		PageInfo<Wrong> p = new PageInfo<Wrong>(list);
-		model.addAttribute("p", p);
-		model.addAttribute("wrong", list);
+		if (userlist != null) {
+			vo.setUserlist_id(userlist.getId());
+			if (vo != null) {
+				List<Wrong> list = solveService.findwrong(vo);
+				if (list != null) {
+					PageInfo<Wrong> p = new PageInfo<Wrong>(list);
+					model.addAttribute("p", p);
+					model.addAttribute("wrong", list);
+				}
+			}
+		}
 		model.addAttribute("mainPage", "mywrong.jsp");
 		return "zuke/main";
 	}

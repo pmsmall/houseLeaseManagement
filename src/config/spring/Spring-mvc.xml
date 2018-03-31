@@ -12,7 +12,7 @@
 
 	<!-- 加载注解驱动 -->
 	<mvc:annotation-driven />
-	
+
 	<!-- 扫描带Controller注解的类 -->
 	<context:component-scan base-package="net.houselease.controller.*" />
 	<context:component-scan base-package="net.houselease.*">
@@ -33,9 +33,9 @@
 	</bean>
 
 	<!-- 静态资源映射 -->
-	<mvc:resources mapping="/static/**" location="/static/" />
-	<mvc:resources mapping="/upload/**" location="/WEB-INF/upload/" />
-
+	<mvc:resources mapping="/js/**" location="/js/" />
+	<mvc:resources mapping="/css/**" location="/css/" />
+	<mvc:resources mapping="/fonts/**" location="/fonts/" />
 	<mvc:resources location="/" mapping="/**/*.html" />
 	<mvc:resources location="/" mapping="/**/*.js" />
 	<mvc:resources location="/" mapping="/**/*.css" />

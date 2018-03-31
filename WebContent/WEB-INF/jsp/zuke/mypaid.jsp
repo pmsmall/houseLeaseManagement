@@ -11,13 +11,13 @@
 <head>
     <meta charset="UTF-8">
     <title>房屋租赁系统</title>
-   <link rel="stylesheet" type="text/css" href="/css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
-    <script type="text/javascript" src="/js/libs/modernizr.min.js"></script>
-    <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript" src="/js/jquery-ui-datepicker.js"></script>
-    <script type="text/javascript" src="/js/jquery.validate.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.css"/>
+   <link rel="stylesheet" type="text/css" href="<%=path%>/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="<%=path%>/css/main.css"/>
+    <script type="text/javascript" src="<%=path%>/js/libs/modernizr.min.js"></script>
+    <script type="text/javascript" src="<%=path%>/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="<%=path%>/js/jquery-ui-datepicker.js"></script>
+    <script type="text/javascript" src="<%=path%>/js/jquery.validate.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%=path%>/css/jquery-ui.css"/>
 	</script>
 	<style type="text/css">
 	.sum{
@@ -105,7 +105,7 @@
 										<td>
 										
 													<a class="link-update"
-											href="/paid/zukedeletepaid.action?id=${paid.id}"
+											href="<%=path%>/paid/zukedeletepaid.action?id=${paid.id}"
 											onclick="return window.confirm('确定删除吗？')">删除</a>
 											&nbsp;&nbsp; 
 												

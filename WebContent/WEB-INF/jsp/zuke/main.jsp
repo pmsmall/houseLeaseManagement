@@ -11,10 +11,10 @@
 <head>
     <meta charset="UTF-8">
     <title>房屋租赁系统</title>
-    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
-    <script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="/js/libs/modernizr.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%=path%>/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="<%=path%>/css/main.css"/>
+    <script type="text/javascript" src="<%=path%>/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="<%=path%>/js/libs/modernizr.min.js"></script>
     <style>
    
     a:hover{
@@ -59,7 +59,7 @@
             <ul class="top-info-list clearfix">
                 <li>欢迎您，${sessionScope.user.username}！</li>
                
-                <li><a href="javascript:if(confirm('确实要退出登录吗?'))location='/login.action'">退出</a></li>
+                <li><a href="javascript:if(confirm('确实要退出登录吗?'))location='<%=path%>/login.action'">退出</a></li>
             </ul>
         </div>
     </div>
@@ -74,7 +74,7 @@
                 <li>
                     <a class="a"><i class="icon-font">&#xe003;</i>房源信息</a>
                     <div class="p"><ul class="sub-menu">
-                        <li><a href="/houselist.action"><i class="icon-font">&#xe008;</i>房源列表</a></li>
+                        <li><a href="<%=path%>/houselist.action"><i class="icon-font">&#xe008;</i>房源列表</a></li>
                         
        
                     </ul>
@@ -83,8 +83,8 @@
                 <li>
                     <a class="a"><i class="icon-font">&#xe018;</i>租赁信息</a>
                  <div class="p"><ul class="sub-menu">
-                        <li><a href="/zulist/myzulist.action"><i class="icon-font">&#xe017;</i>我的租赁</a></li>
-                        <li><a href="/checkout/getmycheckout.action"><i class="icon-font">&#xe037;</i>已退租列表</a></li>
+                        <li><a href="<%=path%>/zulist/myzulist.action"><i class="icon-font">&#xe017;</i>我的租赁</a></li>
+                        <li><a href="<%=path%>/checkout/getmycheckout.action"><i class="icon-font">&#xe037;</i>已退租列表</a></li>
                         
                     </ul>
                     </div>
@@ -92,8 +92,8 @@
                 <li>
                     <a class="a"><i class="icon-font">&#xe018;</i>我的申请</a>
                 <div class="p"><ul class="sub-menu">
-                        <li><a href="/getmyapply.action"><i class="icon-font">&#xe017;</i>看房申请列表</a></li>
-                        <li><a href="/applyout/getmyapplyout.action"><i class="icon-font">&#xe037;</i>退租申请列表</a></li>
+                        <li><a href="<%=path%>/getmyapply.action"><i class="icon-font">&#xe017;</i>看房申请列表</a></li>
+                        <li><a href="<%=path%>/applyout/getmyapplyout.action"><i class="icon-font">&#xe037;</i>退租申请列表</a></li>
                         
                     </ul>
                     </div>
@@ -101,23 +101,23 @@
                 <li>
                     <a class="a"><i class="icon-font">&#xe018;</i>租金信息</a>
                <div class="p">     <ul class="sub-menu">
-                        <li><a href="/paid/mytopaidlist.action"><i class="icon-font">&#xe017;</i>待缴租金</a></li>
-                       	<li><a href="/paid/findmypaid.action"><i class="icon-font">&#xe017;</i>已缴租金</a></li>
+                        <li><a href="<%=path%>/paid/mytopaidlist.action"><i class="icon-font">&#xe017;</i>待缴租金</a></li>
+                       	<li><a href="<%=path%>/paid/findmypaid.action"><i class="icon-font">&#xe017;</i>已缴租金</a></li>
                         
                     </ul></div>
                 </li>
                 <li>
                     <a class="a"><i class="icon-font">&#xe018;</i>报障模块</a>
                    <div class="p">    <ul class="sub-menu">
-                        <li><a href="/wrong/showaddwrong.action"><i class="icon-font">&#xe017;</i>我要报障</a></li>
-                       	<li><a href="/wrong/mywronglist.action"><i class="icon-font">&#xe017;</i>未处理报障</a></li>
-                        <li><a href="/wrong/findmysolve.action"><i class="icon-font">&#xe017;</i>已处理报障</a></li>
+                        <li><a href="<%=path%>/wrong/showaddwrong.action"><i class="icon-font">&#xe017;</i>我要报障</a></li>
+                       	<li><a href="<%=path%>/wrong/mywronglist.action"><i class="icon-font">&#xe017;</i>未处理报障</a></li>
+                        <li><a href="<%=path%>/wrong/findmysolve.action"><i class="icon-font">&#xe017;</i>已处理报障</a></li>
                     </ul></div>
                 </li>
                 <li>
                     <a class="a"><i class="icon-font">&#xe018;</i>其他操作</a>
                   <div class="p">   <ul class="sub-menu">
-                        <li><a href="/findhasuserlist.action"><i class="icon-font">&#xe017;</i>账户绑定</a></li>
+                        <li><a href="<%=path%>/findhasuserlist.action"><i class="icon-font">&#xe017;</i>账户绑定</a></li>
                        	
                         
                     </ul></div>

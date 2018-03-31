@@ -9,12 +9,14 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import net.houselease.pojo.Houselist;
+import net.houselease.pojo.User;
 import net.houselease.service.interfaces.HouselistService;
+import net.houselease.staticData.Dictionary;
 
 import java.util.List;
 
 import javax.annotation.Resource;
-
+import javax.servlet.http.HttpSession;
 
 @Controller
 
@@ -24,8 +26,12 @@ public class HoustlistController {
 
 	@RequestMapping("/houselist")
 	public String houselist(Model model, @RequestParam(required = false, defaultValue = "1") Integer page,
-			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
-
+			@RequestParam(required = false, defaultValue = "2") Integer pageSize, HttpSession httpSession) {
+		User user = (User) httpSession.getAttribute(Dictionary.user);
+		System.out.println(user);
+		if (user == null) {
+			return "redirect:/login";
+		}
 		PageHelper.startPage(page, pageSize);
 		List<Houselist> houselist = houselistService.selectAll();
 		PageInfo<Houselist> p = new PageInfo<Houselist>(houselist);
@@ -56,12 +62,12 @@ public class HoustlistController {
 		String houseid = houselist.getHouseid();
 		Houselist houselist1 = houselistService.findhouseid(houseid);
 		if (houselist1 != null) {
-			model.addAttribute("error", "璇ユ埧灞媔d宸插瓨鍦�");
+			model.addAttribute("error", "该房屋id已存在");
 			model.addAttribute("houselist", houselist);
 			model.addAttribute("mainPage", "addhouse.jsp");
 			return "admin/main1";
 		} else {
-			model.addAttribute("error", "娣诲姞鎴愬姛");
+			model.addAttribute("error", "添加成功");
 			houselistService.inserthouse(houselist);
 			model.addAttribute("houselist", houselist);
 			model.addAttribute("mainPage", "addhouse.jsp");
@@ -103,13 +109,13 @@ public class HoustlistController {
 		if (list != null) {
 			model.addAttribute("houselist", houselist);
 			model.addAttribute("mainPage", "changehouse.jsp");
-			model.addAttribute("error", "璇ユ埧灞媔d宸插瓨鍦�");
+			model.addAttribute("error", "该房屋id已存在");
 			return "admin/main1";
 		} else {
 			houselistService.updatehouse(houselist);
 			model.addAttribute("houselist", houselist);
 			model.addAttribute("mainPage", "changehouse.jsp");
-			model.addAttribute("error", "鏇存柊鎴愬姛");
+			model.addAttribute("error", "更新成功");
 			return "admin/main1";
 		}
 	}

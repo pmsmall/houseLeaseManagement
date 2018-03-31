@@ -62,17 +62,18 @@ public class PaidController {
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
 		User user1 = (User) httpSession.getAttribute("user");
 		Userlist userlist = userlistService.findhasuserlist(user1.getId());
-
-		vo.setUserlist_id(userlist.getId());
-		PageHelper.startPage(page, pageSize);
-		List<Paid> list = paidService.selectall(vo);
-		PageInfo<Paid> p = new PageInfo<Paid>(list);
-		Double sum = paidService.selectsum(vo);
-		model.addAttribute("paid", list);
-		model.addAttribute("sum", sum);
-		model.addAttribute("p", p);
+		if (userlist != null) {
+			vo.setUserlist_id(userlist.getId());
+			PageHelper.startPage(page, pageSize);
+			List<Paid> list = paidService.selectall(vo);
+			PageInfo<Paid> p = new PageInfo<Paid>(list);
+			Double sum = paidService.selectsum(vo);
+			model.addAttribute("paid", list);
+			model.addAttribute("sum", sum);
+			model.addAttribute("p", p);
+			model.addAttribute("vo", vo);
+		}
 		model.addAttribute("mainPage", "mypaid.jsp");
-		model.addAttribute("vo", vo);
 		return "zuke/main";
 	}
 
@@ -141,14 +142,18 @@ public class PaidController {
 			@RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
 		User user1 = (User) httpSession.getAttribute("user");
+		if (user1 == null)
+			return "redirect:/login";
 		Userlist userlist = userlistService.findhasuserlist(user1.getId());
-		QueryVo vo = new QueryVo();
-		vo.setUserlist_id(userlist.getId());
 		PageHelper.startPage(page, pageSize);
-		List<Topaid> topaid = topaidService.findtopaid(vo);
-		PageInfo<Topaid> p = new PageInfo<Topaid>(topaid);
-		model.addAttribute("p", p);
-		model.addAttribute("topaid", topaid);
+		if (userlist != null) {
+			QueryVo vo = new QueryVo();
+			vo.setUserlist_id(userlist.getId());
+			List<Topaid> topaid = topaidService.findtopaid(vo);
+			PageInfo<Topaid> p = new PageInfo<Topaid>(topaid);
+			model.addAttribute("p", p);
+			model.addAttribute("topaid", topaid);
+		}
 		model.addAttribute("mainPage", "mytopaid.jsp");
 		return "zuke/main";
 	}
