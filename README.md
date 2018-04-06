@@ -29,12 +29,15 @@ Tomcat服务器部署
 
 ###项目功能部分截图
 1. 登录
-![Alt text](https://github.com/pmsmall/houseLeaseManagement/tree/master/img/1.png)
+
+![Alt text](https://github.com/pmsmall/houseLeaseManagement/blob/master/img/1.png)
 * 输入框带有特效
-![Alt text](https://github.com/pmsmall/houseLeaseManagement/tree/master/img/2.png)
+
+![Alt text](https://github.com/pmsmall/houseLeaseManagement/blob/master/img/2.png)
 * 异步传输表单，加载动画增加用户体验
-![Alt text](https://github.com/pmsmall/houseLeaseManagement/tree/master/img/3.png)
-![Alt text](https://github.com/pmsmall/houseLeaseManagement/tree/master/img/4.png)
-![Alt text](https://github.com/pmsmall/houseLeaseManagement/tree/master/img/5.png)
-![Alt text](https://github.com/pmsmall/houseLeaseManagement/tree/master/img/6.png)
+
+![Alt text](https://github.com/pmsmall/houseLeaseManagement/blob/master/img/3.png)
+![Alt text](https://github.com/pmsmall/houseLeaseManagement/blob/master/img/4.png)
+![Alt text](https://github.com/pmsmall/houseLeaseManagement/blob/master/img/5.png)
+![Alt text](https://github.com/pmsmall/houseLeaseManagement/blob/master/img/6.png)
 
