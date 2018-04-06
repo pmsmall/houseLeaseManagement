@@ -6,163 +6,140 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>房屋租赁系统</title>
-   <link rel="stylesheet" type="text/css" href="<%=path%>/css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="<%=path%>/css/main.css"/>
-    <script type="text/javascript" src="<%=path%>/js/libs/modernizr.min.js"></script>
-    <script type="text/javascript" src="<%=path%>/js/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript" src="<%=path%>/js/jquery-ui-datepicker.js"></script>
-    <script type="text/javascript" src="<%=path%>/js/jquery.validate.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="<%=path%>/css/jquery-ui.css"/>
-	</script>
-	<style type="text/css">
-	.sum{
-	float:right;
-	}
-	
-	</style>
-	<script type="text/javascript">
-	 $().ready(function() {
-	        // 在键盘按下并释放及提交后验证提交表单
-	        $("#fromdate").datepicker();
-	        $("#todate").datepicker();
-	 });
-		
-	</script>
-	
-</head>
-<body>
-<div>
-<div class="result-title">
-<h1>租客已缴租金列表</h1>
-</div>
-<div class="search-wrap">
-            <div class="search-content">
-                <form action="/paid/selectall.action" method="post" name="myform">
-                    <table class="search-tab">
-                        <tr>
-                            <th width="120">租客姓名：</th>
-                            <td><input class="common-text" placeholder="姓名" name="zuname" value="${vo.zuname }" id="zuname" type="text"></td>
-                            <th width="70">起始日期:</th>
-                            <td><input class="common-text" name="fromdate" placeholder="请选择应缴日期" value="${vo.fromdate}" id="fromdate" type="text" readonly></td>
-                            <th width="70">终止日期:</th>
-                            <td><input class="common-text" placeholder="请选择应缴日期" name="todate" value="${vo.todate}" id="todate" type="text" readonly></td>
-                             <input type="hidden" id="page" name="page" value="">
-                           
-                            <td><input class="btn btn-primary btn2" name="sub" value="查询" type="submit"></td>
-                           
-                        </tr>
-                    </table>
-                </form>
-            </div>
-        </div>
-	
-						 <div class="result-title">
-                    <div class="result-list">
-                      
-                        
-                    </div>
-                </div>
 
-					<div class="result-content">
-						<table id=grid
-							class="result-tab" width="100%">
-							<tbody>
-								<tr
-									style="FONT-WEIGHT: bold; FONT-STYLE: normal; BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
-									<td>房屋id</td>
-									<td>地址</td>
-									
-									<td>租金</td>
-									<td>租金应缴日期</td>
-									<td>租金实缴日期</td>
-									<td>租客姓名</td>
-									
-									<td>状态</td>
-									<td>操作</td>
-								
-									
-								</tr>
-								<c:forEach items="${paid}" var="paid">
-									<tr
-										style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-										<td>${paid.house_id }</td>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>房屋租赁系统</title>
+		<link rel="stylesheet" type="text/css" href="<%=path%>/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="<%=path%>/css/main.css" />
+		<script type="text/javascript" src="<%=path%>/js/libs/modernizr.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/jquery-ui-datepicker.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/jquery.validate.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="<%=path%>/css/jquery-ui.css" />
+		<style type="text/css">
+			.sum {
+				float: right;
+			}
+		</style>
+		<script type="text/javascript">
+			$().ready(function() {
+				// 在键盘按下并释放及提交后验证提交表单
+				$("#fromdate").datepicker();
+				$("#todate").datepicker();
+			});
+		</script>
 
-										<td>${paid.address}</td>
-										
-										<td>${paid.price}</td>
-										<td>${paid.date}</td>
-										<td>${paid.paydate}</td>
-										<td>${paid.name}</td>
-										<td>${paid.status}</td>
-										<td>
-										
-													<a class="link-update"
-											href="<%=path%>/paid/deletepaid.action?id=${paid.id}"
-											onclick="return window.confirm('确定删除吗？')">删除</a>
-											&nbsp;&nbsp; 
-												
-										
-											
-									</td>		
-										
-										
-									</tr>
+	</head>
 
-								</c:forEach>
-
-							</tbody>
+	<body>
+		<div>
+			<div class="result-title">
+				<h1>租客已缴租金列表</h1>
+			</div>
+			<div class="search-wrap">
+				<div class="search-content">
+					<form action="/paid/selectall.action" method="post" name="myform">
+						<table class="search-tab">
+							<tr>
+								<th width="120">租客姓名：</th>
+								<td><input class="common-text" placeholder="姓名" name="zuname" value="${vo.zuname }" id="zuname" type="text"></td>
+								<th width="70">起始日期:</th>
+								<td><input class="common-text" name="fromdate" placeholder="请选择应缴日期" value="${vo.fromdate}" id="fromdate" type="text" readonly/></td>
+								<th width="70">终止日期:</th>
+								<td><input class="common-text" placeholder="请选择应缴日期" name="todate" value="${vo.todate}" id="todate" type="text" readonly/></td>
+								<td><input type="hidden" id="page" name="page" value="" /></td>
+								<td><input class="btn btn-primary btn2" name="sub" value="查询" type="submit" /></td>
+							</tr>
 						</table>
-						</div>
-					
+					</form>
+				</div>
+			</div>
 
-						<tr>
-						<tr>
-						<div style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right; margin-top:10px">
-						以上共收入租金：<B style="color:red">${sum} </B>元
-						</div>
-								<div style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right; margin-top:10px">
-								
-									共[<B>${p.total}</B>]条记录，共[<B>${p.pages}</B>]页
-									,
+			<div class="result-title">
+				<div class="result-list">
 
-									<c:if test="${ p.pageNum > 1 }">
-													[<A href="javascript:to_page(${p.prePage})">前一页</A>]
-												</c:if>
-										<input type="hidden" name="page" id="page" value=""/>
-									第<B>${p.pageNum}</B>页
+				</div>
+			</div>
 
-									<c:if test="${ p.pageNum < p.pages }">
-													[<A href="javascript:to_page(${p.nextPage})">后一页</A>] 
-												</c:if>
+			<div class="result-content">
+				<table id=grid class="result-tab" style="width: 100%;">
+					<tbody>
+						<tr style="FONT-WEIGHT: bold; FONT-STYLE: normal; BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
+							<td>房屋id</td>
+							<td>地址</td>
 
-									
-								</div>
-							</span>
-						
+							<td>租金</td>
+							<td>租金应缴日期</td>
+							<td>租金实缴日期</td>
+							<td>租客姓名</td>
+
+							<td>状态</td>
+							<td>操作</td>
+
 						</tr>
-						</tbody>
-					
-					
+						<c:forEach items="${paid}" var="paid">
+							<tr style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
+								<td>${paid.house_id }</td>
 
-					
-						</tbody>
-				
+								<td>${paid.address}</td>
 
-	
-</div>
- <script language=javascript>
-	// 提交分页的查询的表单
-	function to_page(page) {
-		if (page) {
-			$("#page").val(page);
-		}
-		document.myform.submit();
-	}
-</script>
-</body>
+								<td>${paid.price}</td>
+								<td>${paid.date}</td>
+								<td>${paid.paydate}</td>
+								<td>${paid.name}</td>
+								<td>${paid.status}</td>
+								<td>
+
+									<a class="link-update" href="<%=path%>/paid/deletepaid.action?id=${paid.id}" onclick="return window.confirm('确定删除吗？')">删除</a>
+									&nbsp;&nbsp;
+
+								</td>
+
+							</tr>
+
+						</c:forEach>
+
+					</tbody>
+				</table>
+			</div>
+
+			<div id=pagelink>
+				<div style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right; margin-top:10px">
+					以上共收入租金：
+					<B style="color:red">${sum} </B>元
+				</div>
+				<div style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right; margin-top:10px">
+
+					共[
+					<B>${p.total}</B>]条记录，共[
+					<B>${p.pages}</B>]页 ,
+
+					<c:if test="${ p.pageNum > 1 }">
+						[
+						<A href="javascript:to_page(${p.prePage})">前一页</A>]
+					</c:if>
+					<input type="hidden" name="page" id="page" value="" /> 第
+					<B>${p.pageNum}</B>页
+
+					<c:if test="${ p.pageNum < p.pages }">
+						[
+						<A href="javascript:to_page(${p.nextPage})">后一页</A>]
+					</c:if>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			// 提交分页的查询的表单
+			function to_page(page) {
+				if(page) {
+					$("#page").val(page);
+				}
+				document.myform.submit();
+			}
+		</script>
+	</body>
+
 </html>

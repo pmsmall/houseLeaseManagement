@@ -16,8 +16,8 @@ public class HouselistServiceImpl implements HouselistService {
 	private HouselistMapper houselistMapper;
 
 	@Override
-	public List<Houselist> selectAll() {
-		List<Houselist> houselist = houselistMapper.selectAll();
+	public List<?> selectAll() {
+		List<?> houselist = houselistMapper.selectAll();
 		return houselist;
 	}
 
@@ -29,13 +29,11 @@ public class HouselistServiceImpl implements HouselistService {
 
 	@Override
 	public void inserthouse(Houselist houselist) {
-		// TODO Auto-generated method stub
 		houselistMapper.inserthouse(houselist);
 	}
 
 	@Override
 	public void deletehouse(int id) {
-		// TODO Auto-generated method stub
 		houselistMapper.deletehouse(id);
 	}
 
@@ -59,7 +57,6 @@ public class HouselistServiceImpl implements HouselistService {
 
 	@Override
 	public void updatehousestatus(Houselist houselist) {
-		// TODO Auto-generated method stub
 		houselistMapper.updatehousestatus(houselist);
 	}
 

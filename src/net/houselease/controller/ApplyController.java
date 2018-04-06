@@ -69,8 +69,8 @@ public class ApplyController {
 	public String findapplylist(Model model, @RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) throws Exception {
 		PageHelper.startPage(page, pageSize);
-		List<Apply> applylist = applyService.findapplylist();
-		PageInfo<Apply> p = new PageInfo<Apply>(applylist);
+		List<?> applylist = applyService.findapplylist();
+		PageInfo<?> p = new PageInfo<>(applylist);
 		model.addAttribute("applylist", applylist);
 		model.addAttribute("p", p);
 		model.addAttribute("mainPage", "applylist.jsp");
@@ -112,9 +112,9 @@ public class ApplyController {
 		PageHelper.startPage(page, pageSize);
 		Userlist userlist = userlistService.findhasuserlist(user1.getId());
 		if (userlist != null) {
-			List<Userlist> list = userlistService.getmyapply(userlist.getId());
+			List<?> list = userlistService.getmyapply(userlist.getId());
 			if (list != null) {
-				PageInfo<Userlist> p = new PageInfo<Userlist>(list);
+				PageInfo<?> p = new PageInfo<>(list);
 				model.addAttribute("userlist", list);
 				model.addAttribute("p", p);
 			}

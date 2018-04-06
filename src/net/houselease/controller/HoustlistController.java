@@ -33,8 +33,8 @@ public class HoustlistController {
 			return "redirect:/login";
 		}
 		PageHelper.startPage(page, pageSize);
-		List<Houselist> houselist = houselistService.selectAll();
-		PageInfo<Houselist> p = new PageInfo<Houselist>(houselist);
+		List<?> houselist = houselistService.selectAll();
+		PageInfo<?> p = new PageInfo<>(houselist);
 
 		model.addAttribute("p", p);
 		model.addAttribute("houselist", houselist);
@@ -47,8 +47,8 @@ public class HoustlistController {
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
 
 		PageHelper.startPage(page, pageSize);
-		List<Houselist> houselist = houselistService.selectAll();
-		PageInfo<Houselist> p = new PageInfo<Houselist>(houselist);
+		List<?> houselist = houselistService.selectAll();
+		PageInfo<?> p = new PageInfo<>(houselist);
 
 		model.addAttribute("p", p);
 		model.addAttribute("houselist", houselist);

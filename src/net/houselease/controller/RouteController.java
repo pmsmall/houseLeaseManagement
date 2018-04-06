@@ -22,16 +22,36 @@ public class RouteController {
 	public String index(HttpSession httpSession, RedirectAttributes attributes) {
 		if (attributes.containsAttribute(Dictionary.loginSession)) {
 			User user = (User) httpSession.getAttribute(Dictionary.user);
-			System.out.println(user);
 			if (user.getType().equals("zuke")) {
-				System.out.println("zuke");
 				return "zuke/main";
 			} else {
-				System.out.println("admin");
 				return "admin/main1";
 			}
 		} else {
-			System.out.println("index");
+			return "redirect:/login.html";
+		}
+	}
+
+	@RequestMapping("404")
+	public String notFound() {
+		return "redirect:/error.html";
+	}
+
+	@RequestMapping("500")
+	public String serverError() {
+		return "redirect:/serverError.html";
+	}
+
+	@RequestMapping(value = "/center")
+	public String center(HttpSession httpSession, RedirectAttributes attributes) {
+		User user = (User) httpSession.getAttribute(Dictionary.user);
+		if (user != null) {
+			if (user.getType().equals("zuke")) {
+				return "zuke/main";
+			} else {
+				return "admin/main1";
+			}
+		} else {
 			return "redirect:/login";
 		}
 	}

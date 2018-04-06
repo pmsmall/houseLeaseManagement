@@ -5,7 +5,7 @@ import java.util.List;
 import net.houselease.pojo.Houselist;
 
 public interface HouselistService {
-	List<Houselist> selectAll();
+	List<?> selectAll();
 
 	Houselist findhouseid(String houseid);
 

@@ -7,7 +7,7 @@
 		<result column="password" property="password" jdbcType="VARCHAR" />
 		<result column="type" property="type" jdbcType="VARCHAR" />
 	</resultMap>
-	
+
 	<sql id="Example_Where_Clause">
 		<where>
 			<foreach collection="oredCriteria" item="criteria" separator="or">
@@ -22,7 +22,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -54,7 +55,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -90,20 +92,18 @@
 		</if>
 
 	</select>
-	<select id="selectByUser" resultType="net.houselease.pojo.User" parameterType="net.houselease.pojo.User">
+	<select id="selectByUser" resultType="net.houselease.pojo.User"
+		parameterType="net.houselease.pojo.SimpleUser">
 		select *
 		from user
 		<where>
-
 			<if test="username!=null and username!=''">
 				and username=#{username}
 			</if>
 			<if test="password!=null and password!=''">
 				and password=#{password}
 			</if>
-			<if test="type!=null and type!=''">
-				and type=#{type}
-			</if>
+			<!-- <if test="type!=null and type!=''"> and type=#{type} </if> -->
 		</where>
 
 	</select>
@@ -125,9 +125,11 @@
 		</if>
 	</delete>
 	<insert id="insert" parameterType="net.houselease.pojo.User">
-		insert into user (id, username, password,
+		insert into user (id,
+		username, password,
 		type)
-		values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},
+		values (#{id,jdbcType=INTEGER},
+		#{username,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR},
 		#{type,jdbcType=VARCHAR})
 	</insert>
@@ -192,9 +194,12 @@
 	<update id="updateByExample" parameterType="map">
 		update user
 		set id = #{record.id,jdbcType=INTEGER},
-		username = #{record.username,jdbcType=VARCHAR},
-		password = #{record.password,jdbcType=VARCHAR},
-		type = #{record.type,jdbcType=VARCHAR}
+		username =
+		#{record.username,jdbcType=VARCHAR},
+		password =
+		#{record.password,jdbcType=VARCHAR},
+		type =
+		#{record.type,jdbcType=VARCHAR}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -216,9 +221,12 @@
 	</update>
 	<update id="updateByPrimaryKey" parameterType="net.houselease.pojo.User">
 		update user
-		set username = #{username,jdbcType=VARCHAR},
-		password = #{password,jdbcType=VARCHAR},
+		set
+		username = #{username,jdbcType=VARCHAR},
+		password =
+		#{password,jdbcType=VARCHAR},
 		type = #{type,jdbcType=VARCHAR}
-		where id = #{id,jdbcType=INTEGER}
+		where id =
+		#{id,jdbcType=INTEGER}
 	</update>
 </mapper>

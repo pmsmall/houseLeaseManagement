@@ -22,6 +22,27 @@
 			expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*/*" />
+			<mvc:mapping path="/*" />
+
+			<mvc:exclude-mapping path="/UserController/*" />
+			<mvc:exclude-mapping path="/RouteController/*" />
+			<mvc:exclude-mapping path="/login*" />
+			<mvc:exclude-mapping path="/*/*.js" />
+			<mvc:exclude-mapping path="/*/*.css" />
+			<mvc:exclude-mapping path="/*.html" />
+			<mvc:exclude-mapping path="/*/*.png" />
+			<mvc:exclude-mapping path="/*/*.woff" />
+			<bean class="net.houselease.interceptor.LoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<!-- <bean id="htmlViewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"> 
+		<property name="prefix" value="/" /> <property name="suffix" value=".html" 
+		/> <property name="order" value="0"></property> <property name="contentType" 
+		value="text/html;charset=UTF-8"></property> </bean> -->
 	<!-- 配置视图解析器 作用:在controller中指定页面路径的时候就不用写页面的完整路径名称了,可以直接写页面去掉扩展名的名称 -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -30,12 +51,17 @@
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<!-- 后缀 -->
 		<property name="suffix" value=".jsp" />
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.InternalResourceView" /> <!-- 不能用jstl的那个 -->
+		<property name="contentType" value="text/html;charset=UTF-8" />
+		<property name="order" value="0"></property>
 	</bean>
 
 	<!-- 静态资源映射 -->
 	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/css/**" location="/css/" />
 	<mvc:resources mapping="/fonts/**" location="/fonts/" />
+	<mvc:resources mapping="/images/**" location="/images/" />
 	<mvc:resources location="/" mapping="/**/*.html" />
 	<mvc:resources location="/" mapping="/**/*.js" />
 	<mvc:resources location="/" mapping="/**/*.css" />

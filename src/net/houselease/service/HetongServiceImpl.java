@@ -34,9 +34,7 @@ public class HetongServiceImpl implements HetongService {
 
 	@Override
 	public void deletehetong(String house_id) {
-		// TODO Auto-generated method stub
 		hetongMapper.deletehetong(house_id);
-
 	}
 
 }
