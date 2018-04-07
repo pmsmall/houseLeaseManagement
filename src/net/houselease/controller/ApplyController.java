@@ -21,6 +21,7 @@ import net.houselease.pojo.Zulist;
 import net.houselease.service.interfaces.ApplyService;
 import net.houselease.service.interfaces.HouselistService;
 import net.houselease.service.interfaces.UserlistService;
+import net.houselease.staticData.Dictionary;
 
 @Controller
 @RequestMapping("")
@@ -38,7 +39,7 @@ public class ApplyController {
 	// 申请看房
 	@RequestMapping("/applycheckuserlist")
 	public String applycheckuserlist(HttpSession httpSession, Model model, Integer id) {
-		User user1 = (User) httpSession.getAttribute("user");
+		User user1 = (User) httpSession.getAttribute(Dictionary.USER_FIELD);
 		Integer user_id = user1.getId();
 		Userlist list = userlistService.findhasuserlist(user_id);
 		if (list == null) {
@@ -74,7 +75,7 @@ public class ApplyController {
 		model.addAttribute("applylist", applylist);
 		model.addAttribute("p", p);
 		model.addAttribute("mainPage", "applylist.jsp");
-		return "admin/main1";
+		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
 	}
 
 	@RequestMapping("/applychangehousestatus")
@@ -106,9 +107,7 @@ public class ApplyController {
 	public String getmyapply(Model model, HttpSession httpSession,
 			@RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
-		User user1 = (User) httpSession.getAttribute("user");
-		if (user1 == null)
-			return "redirect:/login";
+		User user1 = (User) httpSession.getAttribute(Dictionary.USER_FIELD);
 		PageHelper.startPage(page, pageSize);
 		Userlist userlist = userlistService.findhasuserlist(user1.getId());
 		if (userlist != null) {
@@ -120,7 +119,7 @@ public class ApplyController {
 			}
 		}
 		model.addAttribute("mainPage", "myapply.jsp");
-		return "zuke/main";
+		return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
 	}
 
 }

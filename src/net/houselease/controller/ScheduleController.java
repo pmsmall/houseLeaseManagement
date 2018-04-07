@@ -14,6 +14,7 @@ import com.github.pagehelper.PageInfo;
 
 import net.houselease.pojo.Schedule;
 import net.houselease.service.interfaces.ScheduleService;
+import net.houselease.staticData.Dictionary;
 
 @Controller
 @RequestMapping("/schedule")
@@ -30,7 +31,7 @@ public class ScheduleController {
 		model.addAttribute("schedule", schedule);
 		model.addAttribute("p", p);
 		model.addAttribute("mainPage", "schedule.jsp");
-		return "admin/main1";
+		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
 	}
 
 	@RequestMapping("/deleteschedule")
@@ -53,7 +54,7 @@ public class ScheduleController {
 		model.addAttribute("error", "更新成功");
 		model.addAttribute("schedule", schedule);
 		model.addAttribute("mainPage", "updateschedule.jsp");
-		return "admin/main1";
+		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
 
 	}
 
@@ -61,7 +62,7 @@ public class ScheduleController {
 	public String toinsert(Model model) {
 		model.addAttribute("mainPage", "addschedule.jsp");
 
-		return "admin/main1";
+		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
 
 	}
 
@@ -72,7 +73,7 @@ public class ScheduleController {
 
 		model.addAttribute("mainPage", "updateschedule.jsp");
 
-		return "admin/main1";
+		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
 
 	}
 }

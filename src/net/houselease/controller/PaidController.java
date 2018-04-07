@@ -23,6 +23,7 @@ import net.houselease.pojo.Zulist;
 import net.houselease.service.interfaces.PaidService;
 import net.houselease.service.interfaces.TopaidService;
 import net.houselease.service.interfaces.UserlistService;
+import net.houselease.staticData.Dictionary;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;;
@@ -52,7 +53,7 @@ public class PaidController {
 		model.addAttribute("p", p);
 		model.addAttribute("mainPage", "paid.jsp");
 		model.addAttribute("vo", vo);
-		return "admin/main1";
+		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
 	}
 
 	// 租客查找自己已缴租金列表
@@ -60,7 +61,7 @@ public class PaidController {
 	public String findmypaid(HttpSession httpSession, Model model, QueryVo vo,
 			@RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
-		User user1 = (User) httpSession.getAttribute("user");
+		User user1 = (User) httpSession.getAttribute(Dictionary.USER_FIELD);
 		Userlist userlist = userlistService.findhasuserlist(user1.getId());
 		if (userlist != null) {
 			vo.setUserlist_id(userlist.getId());
@@ -74,7 +75,7 @@ public class PaidController {
 			model.addAttribute("vo", vo);
 		}
 		model.addAttribute("mainPage", "mypaid.jsp");
-		return "zuke/main";
+		return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
 	}
 
 	// 管理员删除已缴租金记录
@@ -101,7 +102,7 @@ public class PaidController {
 		model.addAttribute("zulist", list);
 		model.addAttribute("p", p);
 		model.addAttribute("mainPage", "showaddpaid.jsp");
-		return "admin/main1";
+		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
 	}
 
 	// 点击收租后跳转到添加租金信息页面
@@ -110,7 +111,7 @@ public class PaidController {
 		Zulist zulist = paidService.findzukezulist(id);
 		model.addAttribute("zulist", zulist);
 		model.addAttribute("mainPage", "addpaid.jsp");
-		return "admin/main1";
+		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
 	}
 
 	// 添加租金信息到topaid表
@@ -133,7 +134,7 @@ public class PaidController {
 		model.addAttribute("topaid", list);
 		model.addAttribute("p", p);
 		model.addAttribute("mainPage", "topaid.jsp");
-		return "admin/main1";
+		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
 	}
 
 	// 租客查看自己的未缴租金
@@ -141,9 +142,7 @@ public class PaidController {
 	public String mytopaidlist(Model model, HttpSession httpSession,
 			@RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
-		User user1 = (User) httpSession.getAttribute("user");
-		if (user1 == null)
-			return "redirect:/login";
+		User user1 = (User) httpSession.getAttribute(Dictionary.USER_FIELD);
 		Userlist userlist = userlistService.findhasuserlist(user1.getId());
 		PageHelper.startPage(page, pageSize);
 		if (userlist != null) {
@@ -155,7 +154,7 @@ public class PaidController {
 			model.addAttribute("topaid", topaid);
 		}
 		model.addAttribute("mainPage", "mytopaid.jsp");
-		return "zuke/main";
+		return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
 	}
 
 	// 租客进行支付操作

@@ -20,18 +20,13 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 
-public class HoustlistController {
+public class HousesController {
 	@Resource
 	private HouselistService houselistService;
 
 	@RequestMapping("/houselist")
 	public String houselist(Model model, @RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize, HttpSession httpSession) {
-		User user = (User) httpSession.getAttribute(Dictionary.user);
-		System.out.println(user);
-		if (user == null) {
-			return "redirect:/login";
-		}
 		PageHelper.startPage(page, pageSize);
 		List<?> houselist = houselistService.selectAll();
 		PageInfo<?> p = new PageInfo<>(houselist);
@@ -39,7 +34,7 @@ public class HoustlistController {
 		model.addAttribute("p", p);
 		model.addAttribute("houselist", houselist);
 		model.addAttribute("mainPage", "houselist.jsp");
-		return "zuke/main";
+		return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
 	}
 
 	@RequestMapping("/ahouselist")
@@ -53,7 +48,7 @@ public class HoustlistController {
 		model.addAttribute("p", p);
 		model.addAttribute("houselist", houselist);
 		model.addAttribute("mainPage", "ahouselist.jsp");
-		return "admin/main1";
+		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
 	}
 
 	@RequestMapping("/addhouse")
@@ -65,13 +60,13 @@ public class HoustlistController {
 			model.addAttribute("error", "该房屋id已存在");
 			model.addAttribute("houselist", houselist);
 			model.addAttribute("mainPage", "addhouse.jsp");
-			return "admin/main1";
+			return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
 		} else {
 			model.addAttribute("error", "添加成功");
 			houselistService.inserthouse(houselist);
 			model.addAttribute("houselist", houselist);
 			model.addAttribute("mainPage", "addhouse.jsp");
-			return "admin/main1";
+			return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
 		}
 	}
 
@@ -79,7 +74,7 @@ public class HoustlistController {
 	public String toaddhoust(Model model) {
 		model.addAttribute("mainPage", "addhouse.jsp");
 
-		return "admin/main1";
+		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
 	}
 
 	@RequestMapping("/deletehouse")
@@ -100,7 +95,7 @@ public class HoustlistController {
 		Houselist list = houselistService.findid(id);
 		model.addAttribute("houselist", list);
 		model.addAttribute("mainPage", "changehouse.jsp");
-		return "admin/main1";
+		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
 	}
 
 	@RequestMapping("/findhouseidupdate")
@@ -110,13 +105,13 @@ public class HoustlistController {
 			model.addAttribute("houselist", houselist);
 			model.addAttribute("mainPage", "changehouse.jsp");
 			model.addAttribute("error", "该房屋id已存在");
-			return "admin/main1";
+			return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
 		} else {
 			houselistService.updatehouse(houselist);
 			model.addAttribute("houselist", houselist);
 			model.addAttribute("mainPage", "changehouse.jsp");
 			model.addAttribute("error", "更新成功");
-			return "admin/main1";
+			return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
 		}
 	}
 

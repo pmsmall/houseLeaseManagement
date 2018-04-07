@@ -183,7 +183,7 @@
 
 		</div>
 		<!--/main-->
-		<iframe class="main_background" src="<%=path%>/main_background.html" seamless></iframe>
+		<iframe class="main_background" src="<%=path%>/background.html" seamless></iframe>
 
 	</body>
 

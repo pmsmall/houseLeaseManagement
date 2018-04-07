@@ -9,6 +9,15 @@ public class User extends SimpleUser {
 
 	}
 
+	public User(SimpleUser user) {
+		super(user);
+	}
+
+	public User(SimpleUser user, String type) {
+		this(user);
+		this.type = type;
+	}
+
 	public Integer getId() {
 		return id;
 	}

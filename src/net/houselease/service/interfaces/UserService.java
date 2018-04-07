@@ -11,4 +11,10 @@ public interface UserService {
 
 	public User login(SimpleUser user) throws Exception;
 
+	public User signup(User user) throws Exception;
+
+	public boolean signupCheck(SimpleUser user) throws Exception;
+
+	public boolean signupCheck(String username) throws Exception;
+
 }

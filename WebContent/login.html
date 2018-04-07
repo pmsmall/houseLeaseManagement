@@ -12,10 +12,13 @@
 		<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="js/localization/messages_zh.js"></script>
 		<script type="text/javascript" src="js/jquery.serializejson.min.js"></script>
-		<script src="js/jquery.shCircleLoader.js" type="text/javascript"></script>
+		<script type="text/javascript" src="js/jquery.shCircleLoader.js"></script>
 
 		<script type="text/javascript">
-			function responseHandle(data) {
+
+			var baseUrl = "http://localhost:8080/houseLeaseManagement";
+
+			function responseHandle(data, errorMsg) {
 				if(data['status']) {
 					var form = $('.form');
 					if(form.hasClass('main_rotate'))
@@ -26,38 +29,46 @@
 					setTimeout("window.location.href='/houseLeaseManagement/center';",
 						2000);
 				} else {
-					alert("登录失败\n用户名不存在或者密码错误");
+					alert(errorMsg);
 					$('.wait').css('display', 'none');
 				}
 			}
 
-			function mySubmit() {
-				var wait = $('#login-button+.wait');
+			function mySubmit(formType, dst, errorMsg) {
+				var wait = $('#' + formType + '-button+.wait');
 				wait.css('display', 'block');
 				wait
 					.shCircleLoader({
 						keyframes: "0%{background:white}40%{background:transparent}60%{background:transparent}100%{background:white}"
 					});
 
-				$
-					.ajax({
-						url: "http://localhost:8080/houseLeaseManagement/logincheck.action",
-						type: "post",
-						contentType: 'application/json;charset=UTF-8',
-						data: JSON.stringify($('#loginform').serializeJSON()),
-						dataType: "json",
-						success: function(data) {
-							responseHandle(data);
-						},
-						error: function() {
-							alert("error");
-						}
-					});
+				$.ajax({
+					url: baseUrl + dst,
+					type: "post",
+					contentType: 'application/json;charset=UTF-8',
+					data: JSON.stringify($('#' + formType + 'form').serializeJSON()),
+					dataType: "json",
+					success: function(data) {
+						responseHandle(data, errorMsg);
+					},
+					error: function() {
+						alert("error");
+					}
+				});
+			}
+
+			function loginSubmit() {
+				mySubmit('login', '/logincheck.action', "登录失败\n用户名不存在或者密码错误");
+			}
+
+			function signupSubmit() {
+				mySubmit('signup', '/signup.action', "注册失败\n用户名已经存在");
 			}
 		</script>
 	</head>
 
 	<body>
+
 		<div class="wrapper">
 			<ul class="bg-bubbles">
 				<li></li>
@@ -72,18 +83,18 @@
 				<li></li>
 			</ul>
 		</div>
-
 		<div style="overflow: hidden; width: 100%; height: 100%; position: fixed;">
 			<div class="form motionDiv">
 				<h1>房屋租赁系统</h1>
 				<ul class="tab-group">
-					<li class="tab">
+					<li id="signup-menu" class="tab">
 						<a href="#signup">注册</a>
 					</li>
-					<li class="tab active">
+					<li id="login-menu" class="tab">
 						<a href="#login">登录</a>
 					</li>
 				</ul>
+				<!-- tab-content start -->
 				<div class="tab-content">
 					<div id="login">
 						<h1>欢迎回来!</h1>
@@ -112,41 +123,38 @@
 					<div id="signup">
 						<h1>免费注册</h1>
 
-						<form action="/" method="post">
-
-							<div class="top-row">
-								<div class="field-wrap">
-									<label> First Name<span class="req">*</span>
-								</label> <input type="text" required autocomplete="off" />
-								</div>
-
-								<div class="field-wrap">
-									<label> Last Name<span class="req">*</span>
-								</label> <input type="text" required autocomplete="off" />
-								</div>
+						<form id="signupform" onsubmit="return false" action="##" method="post">
+							<div class="field-wrap">
+								<label>用户名
+										<span class="req">*</span>
+								</label>
+								<input type="text" name="username" required autocomplete="off" />
 							</div>
 
 							<div class="field-wrap">
-								<label> Email Address<span class="req">*</span>
-							</label> <input type="text" required autocomplete="off" />
+								<label>密码
+										<span class="req">*</span>
+									</label>
+								<input id="signup-password" type="password" name="password" required autocomplete="off" />
 							</div>
 
 							<div class="field-wrap">
-								<label> Set A Password<span class="req">*</span>
-							</label> <input type="password" required autocomplete="off" />
+								<label>确认密码
+										<span class="req">*</span>
+									</label>
+								<input type="password" name="confirm_password" required autocomplete="off" />
 							</div>
+
 							<button type="submit" class="button button-block">现在开始</button>
 							<div id="wait" class="field-wrap wait"></div>
 						</form>
-
 					</div>
-
 				</div>
 				<!-- tab-content -->
-
 			</div>
 		</div>
-		<script src="js/index.js"></script>
+
+		<script type="text/javascript" src="js/index.js"></script>
 
 		<script type="text/javascript">
 			$().ready(function() {
@@ -157,29 +165,75 @@
 				$("#loginform").validate({
 					rules: {
 						username: {
-							required: true,
+							required: true
 						},
 
 						password: {
-							required: true,
+							required: true
 						},
 
 					},
 					messages: {
 						username: {
-							required: "请输入用户名",
+							required: "请输入用户名"
 						},
 
 						password: {
-							required: "请输入密码",
+							required: "请输入密码"
 						},
 
 					},
 					submitHandler: function(form) {
-						mySubmit();
+						loginSubmit();
+					}
+				});
+				$("#signupform").validate({
+					rules: {
+						username: {
+							required: true,
+							remote: {
+								url: baseUrl + "/signupCheck",
+								type: "post",
+								dataType: "json",
+								data: {
+									username: function() {
+										return $("#signupform :first-child input").val();
+									}
+								}
+							}
+						},
+
+						password: {
+							required: true
+						},
+
+						confirm_password: {
+							required: true,
+							equalTo: "#signup-password",
+						}
+
+					},
+					messages: {
+						username: {
+							required: "请输入用户名",
+							remote: "该用户已经注册"
+						},
+
+						password: {
+							required: "请输入密码"
+						},
+
+						confirm_password: {
+							required: "请再次输入密码",
+							equalTo: "两次密码输入不一致"
+						}
+					},
+					submitHandler: function(form) {
+						signupSubmit();
 					}
 				});
 			}
+
 			var error = "${error}";
 			if(error == "error") {
 				alert("帐户名或密码错误");

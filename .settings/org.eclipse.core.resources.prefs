@@ -2,6 +2,6 @@ eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/jsp/admin/index.jsp=UTF-8
 encoding//WebContent/WEB-INF/jsp/zuke/houselist.jsp=UTF-8
 encoding//WebContent/css/common.css=UTF-8
-encoding//src/net/houselease/controller/HoustlistController.java=UTF-8
+encoding//src/net/houselease/controller/HousesController.java=UTF-8
 encoding/<project>=UTF-8
 encoding/src=UTF-8

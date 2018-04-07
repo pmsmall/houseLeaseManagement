@@ -20,55 +20,37 @@ public class RouteController {
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String index(HttpSession httpSession, RedirectAttributes attributes) {
-		if (attributes.containsAttribute(Dictionary.loginSession)) {
-			User user = (User) httpSession.getAttribute(Dictionary.user);
-			if (user.getType().equals("zuke")) {
-				return "zuke/main";
-			} else {
-				return "admin/main1";
+		if (attributes.containsAttribute(Dictionary.LOGIN_SESSION)) {
+			User user = (User) httpSession.getAttribute(Dictionary.USER_FIELD);
+			if (user.getType().equals(Dictionary.RENTER_ROLE)) {
+				return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
+			} else if (user.getType().equals(Dictionary.ADMIN_ROLE)) {
+				return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
 			}
-		} else {
-			return "redirect:/login.html";
 		}
+		return Dictionary.LOGIN_VIEW;
 	}
 
-	@RequestMapping("404")
+	@RequestMapping("/404")
 	public String notFound() {
 		return "redirect:/error.html";
 	}
 
-	@RequestMapping("500")
+	@RequestMapping("/500")
 	public String serverError() {
 		return "redirect:/serverError.html";
 	}
 
 	@RequestMapping(value = "/center")
 	public String center(HttpSession httpSession, RedirectAttributes attributes) {
-		User user = (User) httpSession.getAttribute(Dictionary.user);
+		User user = (User) httpSession.getAttribute(Dictionary.USER_FIELD);
 		if (user != null) {
-			if (user.getType().equals("zuke")) {
-				return "zuke/main";
-			} else {
-				return "admin/main1";
+			if (user.getType().equals(Dictionary.RENTER_ROLE)) {
+				return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
+			} else if (user.getType().equals(Dictionary.ADMIN_ROLE)) {
+				return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
 			}
-		} else {
-			return "redirect:/login";
 		}
+		return Dictionary.LOGIN_VIEW;
 	}
-
-	@RequestMapping(value = "/about")
-	public String about() {
-		return "about";
-	}
-
-	@RequestMapping(value = "/help")
-	public String help() {
-		return "help";
-	}
-
-	@RequestMapping(value = "/system")
-	public String system() {
-		return "system-setting";
-	}
-
 }
