@@ -23,7 +23,7 @@ public class PaidServiceImpl implements PaidService {
 
 	@Override
 	public List<Paid> selectall(QueryVo vo) {
-		List<Paid> list = paidMapper.selectall(vo);
+		List<Paid> list = (paidMapper.selectall(vo));
 		return list;
 	}
 

@@ -9,7 +9,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 import net.houselease.pojo.Houselist;
-import net.houselease.pojo.User;
 import net.houselease.service.interfaces.HouselistService;
 import net.houselease.staticData.Dictionary;
 

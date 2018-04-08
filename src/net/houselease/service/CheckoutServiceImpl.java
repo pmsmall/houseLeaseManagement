@@ -31,7 +31,6 @@ public class CheckoutServiceImpl implements CheckoutService {
 
 	@Override
 	public void deletecheckout(Integer id) {
-
 		checkoutMapper.deletecheckout(id);
 	}
 

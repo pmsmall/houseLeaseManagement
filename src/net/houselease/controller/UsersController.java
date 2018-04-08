@@ -81,8 +81,8 @@ public class UsersController {
 	public String findalluserlist(Model model, @RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
 		PageHelper.startPage(page, pageSize);
-		List<Userlist> userlist = userlistService.findalluserlist();
-		PageInfo<Userlist> p = new PageInfo<Userlist>(userlist);
+		List<?> userlist = userlistService.findalluserlist();
+		PageInfo<?> p = new PageInfo<>(userlist);
 		model.addAttribute("userlist", userlist);
 		model.addAttribute("p", p);
 		model.addAttribute("mainPage", "userlist.jsp");

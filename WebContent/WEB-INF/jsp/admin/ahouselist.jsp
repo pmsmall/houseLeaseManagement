@@ -6,7 +6,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 
 	<head>
@@ -29,7 +29,7 @@
 				</div>
 
 				<div class="result-content">
-					<table id=grid class="result-tab" width="100%">
+					<table id=grid class="result-tab" style="width: 100%;">
 						<tbody>
 							<tr style="FONT-WEIGHT: bold; FONT-STYLE: normal; BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
 								<td>房屋id</td>
@@ -76,7 +76,7 @@
 				</div>
 			</form>
 		</div>
-		<script language=javascript>
+		<script type="text/javascript">
 			// 提交分页的查询的表单
 			function to_page(page) {
 				if(page) {

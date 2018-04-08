@@ -6,7 +6,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 
 	<head>
@@ -28,34 +28,46 @@
 	<body>
 		<div>
 			<div class="result-title">
-				<h1>看房申请列表</h1>
+				<h1>我的租赁</h1>
 			</div>
-			<form id="houseForm" name="houseForm" action="/getmyapply.action" method=post>
+			<form id="houseForm" name="houseForm" action="/zulist/myzulist.action" method=post>
 				<div class="result-title">
 					<div class="result-list"></div>
 				</div>
+
 				<div class="result-content">
-					<table id=grid class="result-tab" width="100%">
+					<table id=grid class="result-tab" style="width: 100%;">
 						<tbody>
 							<tr style="FONT-WEIGHT: bold; FONT-STYLE: normal; BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
-								<td>申请人</td>
-								<td>申请人身份证号</td>
-								<td>申请人联系电话</td>
+
+								<td>租赁人</td>
+								<td>租赁人身份证号</td>
+								<td>租赁人联系电话</td>
 								<td>房屋id</td>
 								<td>地址</td>
 								<td>价格</td>
-								<td>状态</td>
+								<td>操作</td>
+
 							</tr>
-							<c:forEach items="${userlist}" varStatus="i" var="userlist">
+							<c:forEach items="${userlistzu}" varStatus="i" var="userlist">
+
 								<tr style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-									<c:forEach items="${userlist.apply}" var="apply">
+									<c:forEach items="${userlist.zulist}" var="zulist">
 										<td>${userlist.name }</td>
+
 										<td>${userlist.idcard}</td>
+
 										<td>${userlist.phone}</td>
-										<td>${apply.house_id}</td>
-										<td>${apply.address}</td>
-										<td>${apply.price}</td>
-										<td>${apply.status}</td>
+
+										<td>${zulist.house_id}</td>
+										<td>${zulist.address}</td>
+										<td>${zulist.price}</td>
+
+										<td>
+											<a class="link-update" href="<%=path%>/hetong/zukeseehetong.action?house_id=${zulist.house_id }">查看合同</a>
+											&nbsp;&nbsp;
+											<a class="link-del" href="<%=path%>/applyout/insertapplyout.action?house_id=${zulist.house_id }" onclick="return window.confirm('确定要申请退租吗？')">申请退租</a>
+										</td>
 									</c:forEach>
 								</tr>
 							</c:forEach>
@@ -84,7 +96,7 @@
 				</div>
 			</form>
 		</div>
-		<script language=javascript>
+		<script type="text/javascript">
 			// 提交分页的查询的表单
 			function to_page(page) {
 				if(page) {

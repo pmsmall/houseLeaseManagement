@@ -22,7 +22,7 @@ import net.houselease.staticData.Dictionary;
 
 @Controller
 @RequestMapping("/zulist")
-public class RentController {
+public class RentReplyController {
 	@Resource
 	private ZulistService zulistService;
 

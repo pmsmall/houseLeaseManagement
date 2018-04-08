@@ -25,7 +25,7 @@ import net.houselease.staticData.Dictionary;
 
 @Controller
 @RequestMapping("")
-public class ApplyController {
+public class RentRequireController {
 
 	@Resource
 	private UserlistService userlistService;

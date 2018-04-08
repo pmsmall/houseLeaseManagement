@@ -12,7 +12,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-//		System.out.println(request.getRequestURI());
+		System.out.println("requested");
+		System.out.println(request.getRequestURI());
 		// System.out.println("path" + request.getServletPath());
 		User user1 = (User) request.getSession().getAttribute(Dictionary.USER_FIELD);
 		if (user1 == null) {

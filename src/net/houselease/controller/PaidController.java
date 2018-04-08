@@ -45,8 +45,8 @@ public class PaidController {
 	public String selectall(Model model, QueryVo vo, @RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
 		PageHelper.startPage(page, pageSize);
-		List<Paid> list = paidService.selectall(vo);
-		PageInfo<Paid> p = new PageInfo<Paid>(list);
+		List<?> list = paidService.selectall(vo);
+		PageInfo<?> p = new PageInfo<>(list);
 		Double sum = paidService.selectsum(vo);
 		model.addAttribute("paid", list);
 		model.addAttribute("sum", sum);
@@ -66,8 +66,8 @@ public class PaidController {
 		if (userlist != null) {
 			vo.setUserlist_id(userlist.getId());
 			PageHelper.startPage(page, pageSize);
-			List<Paid> list = paidService.selectall(vo);
-			PageInfo<Paid> p = new PageInfo<Paid>(list);
+			List<?> list = paidService.selectall(vo);
+			PageInfo<?> p = new PageInfo<>(list);
 			Double sum = paidService.selectsum(vo);
 			model.addAttribute("paid", list);
 			model.addAttribute("sum", sum);
@@ -97,8 +97,8 @@ public class PaidController {
 	public String showaddpaid(Model model, @RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) throws Exception {
 		PageHelper.startPage(page, pageSize);
-		List<Zulist> list = paidService.findzuuserlist();
-		PageInfo<Zulist> p = new PageInfo<Zulist>(list);
+		List<?> list = paidService.findzuuserlist();
+		PageInfo<?> p = new PageInfo<>(list);
 		model.addAttribute("zulist", list);
 		model.addAttribute("p", p);
 		model.addAttribute("mainPage", "showaddpaid.jsp");
@@ -129,8 +129,8 @@ public class PaidController {
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
 		QueryVo vo = new QueryVo();
 		PageHelper.startPage(page, pageSize);
-		List<Topaid> list = topaidService.findtopaid(vo);
-		PageInfo<Topaid> p = new PageInfo<Topaid>(list);
+		List<?> list = topaidService.findtopaid(vo);
+		PageInfo<?> p = new PageInfo<>(list);
 		model.addAttribute("topaid", list);
 		model.addAttribute("p", p);
 		model.addAttribute("mainPage", "topaid.jsp");
@@ -148,8 +148,8 @@ public class PaidController {
 		if (userlist != null) {
 			QueryVo vo = new QueryVo();
 			vo.setUserlist_id(userlist.getId());
-			List<Topaid> topaid = topaidService.findtopaid(vo);
-			PageInfo<Topaid> p = new PageInfo<Topaid>(topaid);
+			List<?> topaid = topaidService.findtopaid(vo);
+			PageInfo<?> p = new PageInfo<>(topaid);
 			model.addAttribute("p", p);
 			model.addAttribute("topaid", topaid);
 		}

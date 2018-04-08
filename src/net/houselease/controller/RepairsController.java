@@ -45,8 +45,8 @@ public class RepairsController {
 	public String selectall(Model model, QueryVo vo, @RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
 		PageHelper.startPage(page, pageSize);
-		List<Solve> list = solveService.selectall(vo);
-		PageInfo<Solve> p = new PageInfo<Solve>(list);
+		List<?> list = solveService.selectall(vo);
+		PageInfo<?> p = new PageInfo<>(list);
 		Integer count = solveService.selectcount(vo);
 		model.addAttribute("solve", list);
 		model.addAttribute("count", count);
@@ -66,9 +66,9 @@ public class RepairsController {
 		PageHelper.startPage(page, pageSize);
 		if (userlist != null) {
 			vo.setUserlist_id(userlist.getId());
-			List<Solve> list = solveService.selectall(vo);
+			List<?> list = solveService.selectall(vo);
 			if (list != null) {
-				PageInfo<Solve> p = new PageInfo<Solve>(list);
+				PageInfo<?> p = new PageInfo<>(list);
 				Integer count = solveService.selectcount(vo);
 				model.addAttribute("solve", list);
 				model.addAttribute("count", count);
@@ -104,9 +104,9 @@ public class RepairsController {
 		Userlist userlist = userlistService.findhasuserlist(user1.getId());
 		PageHelper.startPage(page, pageSize);
 		if (userlist != null) {
-			List<Zulist> list = zulistService.findzulistbyuid(userlist.getId());
+			List<?> list = zulistService.findzulistbyuid(userlist.getId());
 			if (list != null) {
-				PageInfo<Zulist> p = new PageInfo<Zulist>(list);
+				PageInfo<?> p = new PageInfo<>(list);
 				model.addAttribute("zulist", list);
 				model.addAttribute("p", p);
 			}
@@ -139,8 +139,8 @@ public class RepairsController {
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
 		QueryVo vo = new QueryVo();
 		PageHelper.startPage(page, pageSize);
-		List<Wrong> list = solveService.findwrong(vo);
-		PageInfo<Wrong> p = new PageInfo<Wrong>(list);
+		List<?> list = solveService.findwrong(vo);
+		PageInfo<?> p = new PageInfo<>(list);
 		model.addAttribute("wrong", list);
 		model.addAttribute("p", p);
 		model.addAttribute("mainPage", "wrong.jsp");
@@ -159,9 +159,9 @@ public class RepairsController {
 		if (userlist != null) {
 			vo.setUserlist_id(userlist.getId());
 			if (vo != null) {
-				List<Wrong> list = solveService.findwrong(vo);
+				List<?> list = solveService.findwrong(vo);
 				if (list != null) {
-					PageInfo<Wrong> p = new PageInfo<Wrong>(list);
+					PageInfo<?> p = new PageInfo<>(list);
 					model.addAttribute("p", p);
 					model.addAttribute("wrong", list);
 				}

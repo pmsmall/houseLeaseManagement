@@ -13,13 +13,17 @@
 		<script type="text/javascript" src="js/localization/messages_zh.js"></script>
 		<script type="text/javascript" src="js/jquery.serializejson.min.js"></script>
 		<script type="text/javascript" src="js/jquery.shCircleLoader.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
 
 		<script type="text/javascript">
-
 			var baseUrl = "http://localhost:8080/houseLeaseManagement";
 
 			function responseHandle(data, errorMsg) {
 				if(data['status']) {
+					$.cookie('username', data['username'], {
+						expires: 1,
+						path: '/'
+					});
 					var form = $('.form');
 					if(form.hasClass('main_rotate'))
 						form.removeClass('main_rotate');
@@ -37,10 +41,9 @@
 			function mySubmit(formType, dst, errorMsg) {
 				var wait = $('#' + formType + '-button+.wait');
 				wait.css('display', 'block');
-				wait
-					.shCircleLoader({
-						keyframes: "0%{background:white}40%{background:transparent}60%{background:transparent}100%{background:white}"
-					});
+				wait.shCircleLoader({
+					keyframes: "0%{background:white}40%{background:transparent}60%{background:transparent}100%{background:white}"
+				});
 
 				$.ajax({
 					url: baseUrl + dst,
@@ -52,6 +55,7 @@
 						responseHandle(data, errorMsg);
 					},
 					error: function() {
+						$('.wait').css('display', 'none');
 						alert("error");
 					}
 				});

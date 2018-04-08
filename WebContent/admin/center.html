@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>房屋租赁系统</title>
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/main.css" />
+		<link rel="stylesheet" href="../css/main_action.css">
+		<link rel="stylesheet" href="../css/main_action_style.css">
+
+		<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="../js/libs/modernizr.min.js"></script>
+		<script type="text/javascript" src="../js/my_action.js"></script>
+		<script type="text/javascript" src="../js/jquery.cookie.js"></script>
+		<style>
+			a:hover {
+				cursor: pointer;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--Title-->
+		<div class="topbar-wrap white">
+			<div class="topbar-inner clearfix">
+				<div class="topbar-logo-wrap clearfix">
+					<h1 class="topbar-logo none">
+					<a href="index.html" class="navbar-brand">后台管理</a>
+				</h1>
+					<ul class="navbar-list clearfix">
+						<li>
+							<a class="on sendRequest" href="javascript::void(0)" onclick="to_page('toindex.action')">首页</a>
+						</li>
+
+					</ul>
+				</div>
+				<div class="top-info-wrap">
+					<ul class="top-info-list clearfix">
+						<li id="username_li">欢迎您 !</li>
+						<li>
+							<a href="javascript:if(confirm('确实要退出登录吗?'))location='../logout.action'">退出</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--/Title-->
+		<!--Main-->
+		<div class="clearfix view-container" id="inside" style="text-align: center;">
+			<iframe id="view" src="../404.html" seamless></iframe>
+		</div>
+		<!--/Main-->
+		<!--Dock-->
+		<div class="container clearfix">
+			<div id="container">
+				<div id="dock outer">
+					<ul class="main">
+						<li onmouseleave="nodisplayli(event)">
+							<ul class="drop menu1 top_menu">
+								<li>
+									<a href="../ahouselist.action">房源列表</a>
+								</li>
+								<li>
+									<a href="../toaddhouse.action">添加房源</a>
+								</li>
+							</ul> <span class="top_menu">房源信息</span>
+							<a href="#"><img src="../images/house.png" onmouseenter='displayli(event)' />
+							</a>
+						</li>
+						<li onmouseleave="nodisplayli(event)">
+							<ul class="drop menu2 top_menu">
+								<li>
+									<a href="../zulist/findzulist.action">在租列表</a>
+								</li>
+								<li>
+									<a href="../checkout/getallcheckout.action">已退租列表</a>
+								</li>
+							</ul> <span class="top_menu">租赁信息</span>
+							<a href="#"><img src="../images/my_lease.png" onmouseenter='displayli(event)' /> </a>
+						</li>
+						<li onmouseleave="nodisplayli(event)">
+							<ul class="drop menu3 top_menu">
+								<li>
+									<a href="../findapplylist.action">看房申请</a>
+								</li>
+								<li>
+									<a href="../applyout/findallapplyout.action">退租申请</a>
+								</li>
+							</ul> <span class="top_menu">申请列表</span>
+							<a href="#"><img src="../images/person.png" onmouseenter='displayli(event)' /></a>
+						</li>
+						<li onmouseleave="nodisplayli(event)">
+							<ul class="drop menu4 top_menu">
+								<li>
+									<a href="../paid/showaddpaid.action">我要收租</a>
+								</li>
+								<li>
+									<a href="../paid/topaidlist.action">租客待缴租金</a>
+								</li>
+								<li>
+									<a href="../paid/selectall.action">租客已缴租金</a>
+								</li>
+							</ul> <span class="top_menu">租金信息</span>
+							<a href="#"><img src="../images/money_info.png" onmouseenter='displayli(event)' /></a>
+						</li>
+						<li onmouseleave="nodisplayli(event)">
+							<ul class="drop menu5 top_menu">
+								<li>
+									<a href="../wrong/wronglist.action">待处理报障</a>
+								</li>
+								<li>
+									<a href="../wrong/selectall.action">已处理报障</a>
+								</li>
+							</ul> <span class="top_menu">报故模块</span>
+							<a href="#"><img src="../images/errors.png" onmouseenter='displayli(event)' /></a>
+						</li>
+						<li onmouseleave="nodisplayli(event)">
+							<ul class="drop menu6 top_menu">
+								<li>
+									<a href="../schedule/selectAll.action">查看日程</a>
+								</li>
+								<li>
+									<a href="../schedule/toinsert.action">添加日程</a>
+								</li>
+							</ul> <span class="top_menu">我的日程</span>
+							<a href="#"><img src="../images/schedule.png" onmouseenter='displayli(event)' /></a>
+						</li>
+						<li onmouseleave="nodisplayli(event)">
+							<ul class="drop menu3 top_menu">
+								<li>
+									<a href="../findalluserlist.action">账户管理</a>
+								</li>
+							</ul> <span class="top_menu">其他操作</span>
+							<a href="#"><img src="../images/others.png" onmouseenter='displayli(event)' /></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!--/sidebar-->
+			<!--<div class="main-wrap">
+				<div class="crumb-wrap">
+					<div class="crumb-list">
+						<i class="icon-font">&#xe06b;</i><span>欢迎使用本系统！</span>
+					</div>
+				</div>
+
+				<div class="result-wrap" id="inside">
+					<include page="../main_background.html">
+						</jsp:include>
+				</div>
+			</div>-->
+
+		</div>
+		<!-- /Dock -->
+		<!-- Background -->
+		<iframe class="main_background" src="../background.html" seamless></iframe>
+		<!-- /Background -->
+
+		<!-- Footer -->
+		<div id="center-footer">
+			<div class="da-container clearfix">
+				<p> Copyright © 2018 . All Rights Reserved.</p>
+			</div>
+		</div>
+		<!-- /Footer -->
+		<script type="text/javascript" src="../js/center.js"></script>
+	</body>
+
+</html>

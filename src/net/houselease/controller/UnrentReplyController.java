@@ -48,8 +48,8 @@ public class UnrentReplyController {
 	public String findallapplyout(Model model, @RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
 		PageHelper.startPage(page, pageSize);
-		List<Applyout> applyout = applyoutService.findallapplyout();
-		PageInfo<Applyout> p = new PageInfo<Applyout>(applyout);
+		List<?> applyout = applyoutService.findallapplyout();
+		PageInfo<?> p = new PageInfo<>(applyout);
 		model.addAttribute("applyout", applyout);
 		model.addAttribute("p", p);
 		model.addAttribute("mainPage", "applyout.jsp");
@@ -92,9 +92,9 @@ public class UnrentReplyController {
 		Userlist userlist = userlistService.findhasuserlist(user1.getId());
 		PageHelper.startPage(page, pageSize);
 		if (userlist != null) {
-			List<Userlist> list = userlistService.getmyapplyout(userlist.getId());
+			List<?> list = userlistService.getmyapplyout(userlist.getId());
 			if (list != null) {
-				PageInfo<Userlist> p = new PageInfo<Userlist>(list);
+				PageInfo<?> p = new PageInfo<>(list);
 				model.addAttribute("userlist", list);
 				model.addAttribute("p", p);
 			}

@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 
 	<head>
@@ -14,66 +14,81 @@
 		<title>房屋租赁系统</title>
 		<link rel="stylesheet" type="text/css" href="<%=path%>/css/common.css" />
 		<link rel="stylesheet" type="text/css" href="<%=path%>/css/main.css" />
-		<script type="text/javascript" src="<%=path%>/js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="<%=path%>/js/libs/modernizr.min.js"></script>
-		<script type="text/javascript">
-			var error = "${param.error}";
-			if(error == "applysuccess") {
-
-				alert("申请已提交，请耐心等待管理员的处理。如需查看进度，可前往“我的退租申请”中查看");
+		<script type="text/javascript" src="<%=path%>/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/jquery-ui-datepicker.js"></script>
+		<script type="text/javascript" src="<%=path%>/js/jquery.validate.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="<%=path%>/css/jquery-ui.css" />
+		<style type="text/css">
+			.sum {
+				float: right;
 			}
+		</style>
+		<script type="text/javascript">
+			$().ready(function() {
+				// 在键盘按下并释放及提交后验证提交表单
+				$("#fromdate").datepicker();
+				$("#todate").datepicker();
+			});
 		</script>
+
 	</head>
 
 	<body>
 		<div>
 			<div class="result-title">
-				<h1>已退租列表</h1>
+				<h1>待缴租金列表</h1>
 			</div>
-			<form id="houseForm" name="houseForm" action="/checkout/getmycheckout.action" method=post>
+			<form action="/paid/mytopaidlist.action" method="post" name="myform">
+
 				<div class="result-title">
-					<div class="result-list"></div>
+					<div class="result-list">
+
+					</div>
 				</div>
 
 				<div class="result-content">
-					<table id=grid class="result-tab" width="100%">
+					<table id=grid class="result-tab" style="width: 100%;">
 						<tbody>
 							<tr style="FONT-WEIGHT: bold; FONT-STYLE: normal; BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
-
-								<td>退租人</td>
-								<td>退租人身份证号</td>
-								<td>退租人联系电话</td>
 								<td>房屋id</td>
 								<td>地址</td>
+
+								<td>应缴租金</td>
+								<td>租金应缴日期</td>
+
+								<td>租客姓名</td>
+
 								<td>状态</td>
 								<td>操作</td>
 
 							</tr>
-							<c:forEach items="${userlistcheck}" varStatus="i" var="userlist">
-
+							<c:forEach items="${topaid}" var="topaid">
 								<tr style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-									<c:forEach items="${userlist.checkout}" var="checkout">
-										<td>${userlist.name }</td>
+									<td>${topaid.house_id }</td>
 
-										<td>${userlist.idcard}</td>
+									<td>${topaid.address}</td>
 
-										<td>${userlist.phone}</td>
+									<td>${topaid.price}</td>
+									<td>${topaid.date}</td>
 
-										<td>${checkout.house_id}</td>
-										<td>${checkout.address}</td>
-										<td>${checkout.status}</td>
+									<td>${topaid.name}</td>
+									<td>${topaid.status}</td>
 
-										<td>
-											<a class="link-del" href="<%=path%>/checkout/deletecheckout.action?id=${checkout.id }" onclick="return window.confirm('确定要删除该记录吗？')">删除</a>
-										</td>
-									</c:forEach>
+									<td>
+										<a class="link-update" href="<%=path%>/paid/gotopay.action?id=${topaid.id }" onclick="return window.confirm('确定要支付吗?')">支付租金</a>
+										&nbsp;&nbsp; </td>
+
 								</tr>
+
 							</c:forEach>
+
 						</tbody>
 					</table>
 				</div>
 				<div id=pagelink>
-					<div style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right; margin-top: 10px">
+					<div style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right; margin-top:10px">
+
 						共[
 						<B>${p.total}</B>]条记录，共[
 						<B>${p.pages}</B>]页 ,
@@ -94,21 +109,15 @@
 				</div>
 			</form>
 		</div>
-		<script language=javascript>
+		<script type="text/javascript">
 			// 提交分页的查询的表单
 			function to_page(page) {
 				if(page) {
 					$("#page").val(page);
 				}
-				document.houseForm.submit();
+				document.myform.submit();
 			}
 		</script>
-		<!-- Footer -->
-		<div id="da-footer">
-			<div class="da-container clearfix">
-				<p>2018 . All Rights Reserved.
-			</div>
-		</div>
 	</body>
 
 </html>

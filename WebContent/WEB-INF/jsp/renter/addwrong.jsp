@@ -7,7 +7,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 
 	<head>
@@ -65,7 +65,7 @@
 		<div class="result-content">
 			<div class="sidebar-title">
 				<form action="/wrong/insertwrong.action" method="post" id="myform" name="myform" enctype="multipart/form-data">
-					<table class="insert-tab" width="100%">
+					<table class="insert-tab" style="width: 100%;">
 						<tbody>
 							<tr>
 								<th><i class="require-red">*</i>房屋id：</th>

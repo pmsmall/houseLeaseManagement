@@ -6,7 +6,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 
 	<head>
@@ -14,33 +14,24 @@
 		<title>房屋租赁系统</title>
 		<link rel="stylesheet" type="text/css" href="<%=path%>/css/common.css" />
 		<link rel="stylesheet" type="text/css" href="<%=path%>/css/main.css" />
+		<script type="text/javascript" src="<%=path%>/js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="<%=path%>/js/libs/modernizr.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery-1.8.3.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery-ui-datepicker.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery.validate.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="<%=path%>/css/jquery-ui.css" />
-		<style type="text/css">
-			.sum {
-				float: right;
-			}
-		</style>
 		<script type="text/javascript">
-			$().ready(function() {
-				// 在键盘按下并释放及提交后验证提交表单
-				$("#fromdate").datepicker();
-				$("#todate").datepicker();
-			});
+			var error = "${param.error}";
+			if(error == "applycheck") {
+				alert("你还没完善个人信息，请完善个人信息后再进行申请操作");
+			} else if(error == "applysuccess") {
+				alert("申请成功，请耐心等待房东联系您！");
+			}
 		</script>
-
 	</head>
 
 	<body>
 		<div>
 			<div class="result-title">
-				<h1>待缴租金列表</h1>
+				<h1>房源列表</h1>
 			</div>
-			<form action="/paid/mytopaidlist.action" method="post" name="myform">
-
+			<form id="houseForm" name="houseForm" action="houselist.action" method=post>
 				<div class="result-title">
 					<div class="result-list">
 
@@ -48,36 +39,41 @@
 				</div>
 
 				<div class="result-content">
-					<table id=grid class="result-tab" width="100%">
+					<table id=grid class="result-tab" style="width: 100%;">
 						<tbody>
 							<tr style="FONT-WEIGHT: bold; FONT-STYLE: normal; BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
 								<td>房屋id</td>
 								<td>地址</td>
-
-								<td>应缴租金</td>
-								<td>租金应缴日期</td>
-
-								<td>租客姓名</td>
-
+								<td>面积</td>
+								<td>价格</td>
 								<td>状态</td>
+
 								<td>操作</td>
 
 							</tr>
-							<c:forEach items="${topaid}" var="topaid">
+							<c:forEach items="${houselist}" var="houselist">
 								<tr style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-									<td>${topaid.house_id }</td>
+									<td>${houselist.houseid }</td>
 
-									<td>${topaid.address}</td>
-
-									<td>${topaid.price}</td>
-									<td>${topaid.date}</td>
-
-									<td>${topaid.name}</td>
-									<td>${topaid.status}</td>
-
+									<td>${houselist.address}</td>
+									<td>${houselist.area}</td>
+									<td>${houselist.price}</td>
+									<td>${houselist.status}</td>
 									<td>
-										<a class="link-update" href="<%=path%>/paid/gotopay.action?id=${topaid.id }" onclick="return window.confirm('确定要支付吗?')">支付租金</a>
-										&nbsp;&nbsp; </td>
+										<c:choose>
+											<c:when test="${ houselist.status=='未租赁'}">
+												<a class="link-update" href="applycheckuserlist.action?id=${houselist.id}">申请看房</a>
+												&nbsp;&nbsp;
+											</c:when>
+											<c:when test="${ houselist.status=='已租赁'}">
+												该房已被租赁 &nbsp;&nbsp;
+											</c:when>
+											<c:otherwise>
+												该房已被申请
+											</c:otherwise>
+										</c:choose>
+
+									</td>
 
 								</tr>
 
@@ -88,7 +84,6 @@
 				</div>
 				<div id=pagelink>
 					<div style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right; margin-top:10px">
-
 						共[
 						<B>${p.total}</B>]条记录，共[
 						<B>${p.pages}</B>]页 ,
@@ -107,15 +102,16 @@
 
 					</div>
 				</div>
+
 			</form>
 		</div>
-		<script language=javascript>
+		<script type="text/javascript">
 			// 提交分页的查询的表单
 			function to_page(page) {
 				if(page) {
 					$("#page").val(page);
 				}
-				document.myform.submit();
+				document.houseForm.submit();
 			}
 		</script>
 	</body>

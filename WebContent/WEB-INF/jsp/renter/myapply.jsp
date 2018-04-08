@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 
 	<head>
@@ -18,10 +18,9 @@
 		<script type="text/javascript" src="<%=path%>/js/libs/modernizr.min.js"></script>
 		<script type="text/javascript">
 			var error = "${param.error}";
-			if(error == "applycheck") {
-				alert("你还没完善个人信息，请完善个人信息后再进行申请操作");
-			} else if(error == "applysuccess") {
-				alert("申请成功，请耐心等待房东联系您！");
+			if(error == "applysuccess") {
+
+				alert("申请已提交，请耐心等待管理员的处理。如需查看进度，可前往“我的退租申请”中查看");
 			}
 		</script>
 	</head>
@@ -29,61 +28,42 @@
 	<body>
 		<div>
 			<div class="result-title">
-				<h1>房源列表</h1>
+				<h1>看房申请列表</h1>
 			</div>
-			<form id="houseForm" name="houseForm" action="houselist.action" method=post>
+			<form id="houseForm" name="houseForm" action="/getmyapply.action" method=post>
 				<div class="result-title">
-					<div class="result-list">
-
-					</div>
+					<div class="result-list"></div>
 				</div>
-
 				<div class="result-content">
-					<table id=grid class="result-tab" width="100%">
+					<table id=grid class="result-tab" style="width: 100%;">
 						<tbody>
 							<tr style="FONT-WEIGHT: bold; FONT-STYLE: normal; BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
+								<td>申请人</td>
+								<td>申请人身份证号</td>
+								<td>申请人联系电话</td>
 								<td>房屋id</td>
 								<td>地址</td>
-								<td>面积</td>
 								<td>价格</td>
 								<td>状态</td>
-
-								<td>操作</td>
-
 							</tr>
-							<c:forEach items="${houselist}" var="houselist">
+							<c:forEach items="${userlist}" varStatus="i" var="userlist">
 								<tr style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-									<td>${houselist.houseid }</td>
-
-									<td>${houselist.address}</td>
-									<td>${houselist.area}</td>
-									<td>${houselist.price}</td>
-									<td>${houselist.status}</td>
-									<td>
-										<c:choose>
-											<c:when test="${ houselist.status=='未租赁'}">
-												<a class="link-update" href="applycheckuserlist.action?id=${houselist.id}">申请看房</a>
-												&nbsp;&nbsp;
-											</c:when>
-											<c:when test="${ houselist.status=='已租赁'}">
-												该房已被租赁 &nbsp;&nbsp;
-											</c:when>
-											<c:otherwise>
-												该房已被申请
-											</c:otherwise>
-										</c:choose>
-
-									</td>
-
+									<c:forEach items="${userlist.apply}" var="apply">
+										<td>${userlist.name }</td>
+										<td>${userlist.idcard}</td>
+										<td>${userlist.phone}</td>
+										<td>${apply.house_id}</td>
+										<td>${apply.address}</td>
+										<td>${apply.price}</td>
+										<td>${apply.status}</td>
+									</c:forEach>
 								</tr>
-
 							</c:forEach>
-
 						</tbody>
 					</table>
 				</div>
 				<div id=pagelink>
-					<div style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right; margin-top:10px">
+					<div style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right; margin-top: 10px">
 						共[
 						<B>${p.total}</B>]条记录，共[
 						<B>${p.pages}</B>]页 ,
@@ -102,10 +82,9 @@
 
 					</div>
 				</div>
-
 			</form>
 		</div>
-		<script language=javascript>
+		<script type="text/javascript">
 			// 提交分页的查询的表单
 			function to_page(page) {
 				if(page) {
@@ -114,6 +93,12 @@
 				document.houseForm.submit();
 			}
 		</script>
+		<!-- Footer -->
+		<div id="da-footer">
+			<div class="da-container clearfix">
+				<p>2018 . All Rights Reserved.
+			</div>
+		</div>
 	</body>
 
 </html>

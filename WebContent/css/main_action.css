@@ -7,6 +7,7 @@ body {
 }
 
 #container {
+	z-index: 20;
 	position: relative;
 	display: block;
 }
@@ -18,11 +19,12 @@ body {
 }
 
 #container {
-	position: fixed;
-	bottom: 0;
+	position: absolute;
+	bottom: 37px;
+	margin-bottom: 0px;
 	text-align: center;
 	right: 20%;
-	left: 10%;
+	left: 11%;
 	width: 79%;
 	background: rgba(255, 255, 255, 0.2);
 	border-radius: 10px 10px 0 0;

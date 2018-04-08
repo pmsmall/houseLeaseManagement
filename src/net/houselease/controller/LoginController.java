@@ -11,10 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.alibaba.fastjson.JSONObject;
 
-import net.houselease.io.JSONHelper;
+import net.houselease.controller.io.JSONHelper;
 import net.houselease.pojo.SimpleUser;
 import net.houselease.pojo.User;
 import net.houselease.service.interfaces.UserService;
@@ -27,10 +28,10 @@ public class LoginController {
 	@Resource
 	private UserService userService;
 
-	@RequestMapping("/login")
-	public String redirectLogin() {
-		return Dictionary.LOGIN_VIEW;
-	}
+//	@RequestMapping(path = "/login", method = RequestMethod.GET)
+//	public String redirectLogin() {
+//		return Dictionary.LOGIN_VIEW;
+//	}
 
 	@RequestMapping("/logout")
 	public String logout(HttpSession httpSession) throws Exception {
@@ -38,7 +39,7 @@ public class LoginController {
 		return Dictionary.LOGIN_VIEW;
 	}
 
-	@RequestMapping("/logincheck")
+	@RequestMapping(path = "/logincheck", method = RequestMethod.POST)
 	public String login(SimpleUser user, @RequestBody String param, Model model, HttpSession httpSession,
 			HttpServletResponse response) throws Exception {
 		boolean jsonOn = false;
@@ -91,6 +92,7 @@ public class LoginController {
 		if (jsonOn) {
 			JSONObject result = new JSONObject();
 			result.put("status", status);
+			result.put("username", resultUser.getUsername());
 			JSONHelper.sendJSON(result, response);
 			return null;
 		} else {

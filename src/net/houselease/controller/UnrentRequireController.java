@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import net.houselease.pojo.Checkout;
 import net.houselease.pojo.User;
 import net.houselease.pojo.Userlist;
 import net.houselease.service.interfaces.CheckoutService;
@@ -33,8 +32,8 @@ public class UnrentRequireController {
 	public String getallcheckout(Model model, @RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize, HttpSession httpSession) {
 		PageHelper.startPage(page, pageSize);
-		List<Checkout> checkout = checkoutService.getallcheckout();
-		PageInfo<Checkout> p = new PageInfo<Checkout>(checkout);
+		List<?> checkout = checkoutService.getallcheckout();
+		PageInfo<?> p = new PageInfo<>(checkout);
 		model.addAttribute("p", p);
 		model.addAttribute("checkout", checkout);
 		model.addAttribute("mainPage", "checkout.jsp");
@@ -64,9 +63,9 @@ public class UnrentRequireController {
 
 		Userlist userlist = userlistService.findhasuserlist(user1.getId());
 		if (userlist != null) {
-			List<Userlist> list = userlistService.getmycheckout(userlist.getId());
+			List<?> list = userlistService.getmycheckout(userlist.getId());
 			if (list != null) {
-				PageInfo<Userlist> p = new PageInfo<Userlist>(list);
+				PageInfo<?> p = new PageInfo<>(list);
 				model.addAttribute("p", p);
 				model.addAttribute("userlistcheck", list);
 			}

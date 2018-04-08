@@ -17,10 +17,9 @@ public class UserServiceImpl implements UserService {
 	private UserMapper userMapper;
 
 	@Override
-	public List<?> userList() throws Exception {
+	public List<User> userList() throws Exception {
 		UserExample example = new UserExample();
-		List<?> list = userMapper.selectByExample(example);
-		System.out.println("123" + list);
+		List<User> list = userMapper.selectByExample(example);
 		return list;
 	}
 

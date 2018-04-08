@@ -16,8 +16,8 @@ public class HouselistServiceImpl implements HouselistService {
 	private HouselistMapper houselistMapper;
 
 	@Override
-	public List<?> selectAll() {
-		List<?> houselist = houselistMapper.selectAll();
+	public List<Houselist> selectAll() {
+		List<Houselist> houselist = houselistMapper.selectAll();
 		return houselist;
 	}
 

@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 
 	<head>
@@ -18,9 +18,9 @@
 		<script type="text/javascript" src="<%=path%>/js/libs/modernizr.min.js"></script>
 		<script type="text/javascript">
 			var error = "${param.error}";
-			if(error == "applysuccess") {
+			if(error == "inserttopaid") {
 
-				alert("申请已提交，请耐心等待管理员的处理。如需查看进度，可前往“我的退租申请”中查看");
+				alert("租金信息添加成功！");
 			}
 		</script>
 	</head>
@@ -28,57 +28,47 @@
 	<body>
 		<div>
 			<div class="result-title">
-				<h1>退租申请列表</h1>
+				<h1>待处理报障</h1>
 			</div>
-			<form id="houseForm" name="houseForm" action="/applyout/getmyapplyout.action" method=post>
+			<form id="houseForm" name="houseForm" action="/wrong/mywronglist.action" method=post>
 				<div class="result-title">
-					<div class="result-list"></div>
+					<div class="result-list">
+
+					</div>
 				</div>
 
 				<div class="result-content">
-					<table id=grid class="result-tab" width="100%">
+					<table id=grid class="result-tab" style="width: 100%;">
 						<tbody>
 							<tr style="FONT-WEIGHT: bold; FONT-STYLE: normal; BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
-
-								<td>申请人</td>
-								<td>申请人身份证号</td>
-								<td>申请人联系电话</td>
 								<td>房屋id</td>
 								<td>地址</td>
-
+								<td>报障日期</td>
+								<td>租赁人</td>
+								<td>报障内容</td>
 								<td>状态</td>
-								<td>操作</td>
 
 							</tr>
-							<c:forEach items="${userlist}" varStatus="i" var="userlist">
+							<c:forEach items="${wrong}" var="wrong">
 
 								<tr style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-									<c:forEach items="${userlist.applyout}" var="applyout">
-										<td>${userlist.name }</td>
+									<td>${wrong.house_id }</td>
 
-										<td>${userlist.idcard}</td>
+									<td>${wrong.address}</td>
 
-										<td>${userlist.phone}</td>
+									<td>${wrong.date}</td>
+									<td>${wrong.name}</td>
+									<td>${wrong.detail}</td>
+									<td>${wrong.status}</td>
 
-										<td>${applyout.house_id}</td>
-										<td>${applyout.address}</td>
-
-										<td>${applyout.status}</td>
-										<td>
-											<c:if test="${ applyout.status!='申请中'}">
-												<a class="link-update" href="<%=path%>/applyout/deleteapplyout.action?id=${applyout.id}" onclick="return window.confirm('确定要删除该记录吗？')">删除</a>
-												&nbsp;&nbsp;
-											</c:if>
-										</td>
-									</c:forEach>
-								</tr>
 							</c:forEach>
 
 						</tbody>
 					</table>
 				</div>
+
 				<div id=pagelink>
-					<div style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right; margin-top: 10px">
+					<div style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right; margin-top:10px">
 						共[
 						<B>${p.total}</B>]条记录，共[
 						<B>${p.pages}</B>]页 ,
@@ -94,12 +84,11 @@
 							[
 							<A href="javascript:to_page(${p.nextPage})">后一页</A>]
 						</c:if>
-
 					</div>
 				</div>
 			</form>
 		</div>
-		<script language=javascript>
+		<script type="text/javascript">
 			// 提交分页的查询的表单
 			function to_page(page) {
 				if(page) {

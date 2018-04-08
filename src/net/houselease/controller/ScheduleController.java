@@ -26,8 +26,8 @@ public class ScheduleController {
 	public String selectAll(Model model, @RequestParam(required = false, defaultValue = "1") Integer page,
 			@RequestParam(required = false, defaultValue = "2") Integer pageSize) {
 		PageHelper.startPage(page, pageSize);
-		List<Schedule> schedule = scheduleService.selectAll();
-		PageInfo<Schedule> p = new PageInfo<Schedule>(schedule);
+		List<?> schedule = scheduleService.selectAll();
+		PageInfo<?> p = new PageInfo<>(schedule);
 		model.addAttribute("schedule", schedule);
 		model.addAttribute("p", p);
 		model.addAttribute("mainPage", "schedule.jsp");

@@ -62,7 +62,11 @@
 	<mvc:resources mapping="/css/**" location="/css/" />
 	<mvc:resources mapping="/fonts/**" location="/fonts/" />
 	<mvc:resources mapping="/images/**" location="/images/" />
-	<mvc:resources location="/" mapping="/**/*.html" />
+	
+	<mvc:resources mapping="/admin/**" location="/admin/" />
+	<mvc:resources mapping="/login" location="/login.html" />
+	<mvc:resources mapping="/renter/**" location="/renter/" />
+	<mvc:resources location="/" mapping="/*.html" />
 	<mvc:resources location="/" mapping="/**/*.js" />
 	<mvc:resources location="/" mapping="/**/*.css" />
 

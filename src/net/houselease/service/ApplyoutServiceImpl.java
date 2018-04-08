@@ -2,8 +2,6 @@ package net.houselease.service;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +20,7 @@ import net.houselease.service.interfaces.ApplyoutService;
 @Transactional
 public class ApplyoutServiceImpl implements ApplyoutService {
 
-	@Resource
+	@Autowired
 	private ApplyoutMapper applyoutMapper;
 	@Autowired
 	private HouselistMapper houselistMapper;
@@ -52,7 +50,6 @@ public class ApplyoutServiceImpl implements ApplyoutService {
 
 	@Override
 	public void updateapplyout(Applyout applyout) {
-
 		applyoutMapper.updateapplyout(applyout);
 	}
 
@@ -74,7 +71,6 @@ public class ApplyoutServiceImpl implements ApplyoutService {
 
 	@Override
 	public void deleteapplyout(Integer id) {
-
 		applyoutMapper.deleteapplyout(id);
 	}
 
