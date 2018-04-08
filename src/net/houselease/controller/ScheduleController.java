@@ -30,8 +30,8 @@ public class ScheduleController {
 		PageInfo<?> p = new PageInfo<>(schedule);
 		model.addAttribute("schedule", schedule);
 		model.addAttribute("p", p);
-		model.addAttribute("mainPage", "schedule.jsp");
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "schedule.jsp");
+		return Dictionary.ADMIN_FIELD + "/schedule";// Dictionary.MAIN_VIEW;
 	}
 
 	@RequestMapping("/deleteschedule")
@@ -53,16 +53,15 @@ public class ScheduleController {
 		scheduleService.updateschedule(schedule);
 		model.addAttribute("error", "更新成功");
 		model.addAttribute("schedule", schedule);
-		model.addAttribute("mainPage", "updateschedule.jsp");
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "updateschedule.jsp");
+		return Dictionary.ADMIN_FIELD + "/updateschedule";// Dictionary.MAIN_VIEW;
 
 	}
 
 	@RequestMapping("/toinsert")
 	public String toinsert(Model model) {
-		model.addAttribute("mainPage", "addschedule.jsp");
-
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "addschedule.jsp");
+		return Dictionary.ADMIN_FIELD + "/addschedule";// Dictionary.MAIN_VIEW;
 
 	}
 
@@ -71,9 +70,9 @@ public class ScheduleController {
 		Schedule schedule = scheduleService.selectbyid(id);
 		model.addAttribute("schedule", schedule);
 
-		model.addAttribute("mainPage", "updateschedule.jsp");
+		// model.addAttribute("mainPage", "updateschedule.jsp");
 
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		return Dictionary.ADMIN_FIELD + "/updateschedule";// Dictionary.MAIN_VIEW;
 
 	}
 }

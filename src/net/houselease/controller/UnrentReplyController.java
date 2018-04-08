@@ -52,8 +52,8 @@ public class UnrentReplyController {
 		PageInfo<?> p = new PageInfo<>(applyout);
 		model.addAttribute("applyout", applyout);
 		model.addAttribute("p", p);
-		model.addAttribute("mainPage", "applyout.jsp");
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "applyout.jsp");
+		return Dictionary.ADMIN_FIELD + "/applyout";// Dictionary.MAIN_VIEW;
 	}
 
 	// 管理员拒绝退租申请
@@ -99,7 +99,7 @@ public class UnrentReplyController {
 				model.addAttribute("p", p);
 			}
 		}
-		model.addAttribute("mainPage", "myapplyout.jsp");
-		return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "myapplyout.jsp");
+		return Dictionary.RENTER_FIELD + "/myapplyout";// Dictionary.MAIN_VIEW;
 	}
 }

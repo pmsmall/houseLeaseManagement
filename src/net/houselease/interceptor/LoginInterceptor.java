@@ -12,12 +12,11 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("requested");
-		System.out.println(request.getRequestURI());
-		// System.out.println("path" + request.getServletPath());
-		User user1 = (User) request.getSession().getAttribute(Dictionary.USER_FIELD);
-		if (user1 == null) {
-			response.sendRedirect("/houseLeaseManagement/login.html");
+		// System.out.println("requested");
+		// System.out.println(request.getRequestURI());
+		User user = (User) request.getSession().getAttribute(Dictionary.USER_FIELD);
+		if (user == null) {
+			response.sendRedirect(Dictionary.LOGIN_URI);
 			return false;
 		}
 		return super.preHandle(request, response, handler);

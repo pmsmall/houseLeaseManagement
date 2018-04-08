@@ -1,24 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
+
 <!DOCTYPE html>
 <html>
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>房屋租赁系统</title>
-		<link rel="stylesheet" type="text/css" href="<%=path%>/css/common.css" />
-		<link rel="stylesheet" type="text/css" href="<%=path%>/css/main.css" />
-		<script type="text/javascript" src="<%=path%>/js/libs/modernizr.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery-1.8.3.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery-ui-datepicker.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery.validate.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="<%=path%>/css/jquery-ui.css" />
+		<link rel="stylesheet" type="text/css" href="/houseLeaseManagement/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="/houseLeaseManagement/css/main.css" />
+		<script type="text/javascript" src="/houseLeaseManagement/js/libs/modernizr.min.js"></script>
+		<script type="text/javascript" src="/houseLeaseManagement/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="/houseLeaseManagement/js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="/houseLeaseManagement/js/jquery.validate.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/houseLeaseManagement/css/jquery-ui.css" />
 		<style type="text/css">
 			.sum {
 				float: right;
@@ -50,7 +46,7 @@
 				<div class="result-content">
 					<table id=grid class="result-tab" style="width: 100%;">
 						<tbody>
-							<tr style="FONT-WEIGHT: bold; FONT-STYLE: normal; BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
+							<tr class="result_tab_head">
 								<td>房屋id</td>
 								<td>地址</td>
 
@@ -64,7 +60,7 @@
 
 							</tr>
 							<c:forEach items="${topaid}" var="topaid">
-								<tr style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
+								<tr class="result_tab_body">
 									<td>${topaid.house_id }</td>
 
 									<td>${topaid.address}</td>
@@ -76,7 +72,7 @@
 									<td>${topaid.status}</td>
 
 									<td>
-										<a class="link-update" href="<%=path%>/paid/gotopay.action?id=${topaid.id }" onclick="return window.confirm('确定要支付吗?')">支付租金</a>
+										<a class="link-update" href="/houseLeaseManagement/paid/gotopay.action?id=${topaid.id }" onclick="return window.confirm('确定要支付吗?')">支付租金</a>
 										&nbsp;&nbsp; </td>
 
 								</tr>

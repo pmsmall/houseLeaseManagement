@@ -1,5 +1,6 @@
 body {
-	background-image: url("../images/main_background.jpg");
+	/*background-image: url("../images/main_background.jpg");*/
+	background-color: #005584;
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
@@ -69,4 +70,3 @@ body {
 	display: block;
 	color: #fff;
 }
-

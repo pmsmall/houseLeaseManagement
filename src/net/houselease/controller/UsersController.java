@@ -32,8 +32,8 @@ public class UsersController {
 		if (userlist != null) {
 			model.addAttribute("userlist", userlist);
 		}
-		model.addAttribute("mainPage", "updateuserlist.jsp");
-		return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "updateuserlist.jsp");
+		return Dictionary.RENTER_FIELD + "/updateuserlist";// Dictionary.MAIN_VIEW;
 
 	}
 
@@ -46,7 +46,7 @@ public class UsersController {
 
 			if (list != null) {
 				model.addAttribute("error", "该身份证已被绑定,一个身份证号码只能被一个账户绑定！");
-				model.addAttribute("mainPage", "updateuserlist.jsp");
+				// model.addAttribute("mainPage", "updateuserlist.jsp");
 				model.addAttribute("userlist", userlist);
 			} else {
 				User user1 = (User) httpSession.getAttribute(Dictionary.USER_FIELD);
@@ -55,7 +55,7 @@ public class UsersController {
 				userlistService.insertuserlist(userlist);
 				Userlist list1 = userlistService.checkuserlist(idcard);
 				model.addAttribute("error", "资料完善成功");
-				model.addAttribute("mainPage", "updateuserlist.jsp");
+				// model.addAttribute("mainPage", "updateuserlist.jsp");
 				model.addAttribute("userlist", list1);
 			}
 
@@ -64,17 +64,17 @@ public class UsersController {
 			Userlist list = userlistService.finduserlistupdate(userlist);
 			if (list != null) {
 				model.addAttribute("error", "该身份证号码已被绑定");
-				model.addAttribute("mainPage", "updateuserlist.jsp");
+				// model.addAttribute("mainPage", "updateuserlist.jsp");
 				model.addAttribute("userlist", userlist);
 			} else {
 				userlistService.updateuserlist(userlist);
 				model.addAttribute("error", "更新成功");
-				model.addAttribute("mainPage", "updateuserlist.jsp");
+				// model.addAttribute("mainPage", "updateuserlist.jsp");
 				model.addAttribute("userlist", userlist);
 			}
 
 		}
-		return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
+		return Dictionary.RENTER_FIELD + "/updateuserlist";// Dictionary.MAIN_VIEW;
 	}
 
 	@RequestMapping("/findalluserlist")
@@ -85,8 +85,8 @@ public class UsersController {
 		PageInfo<?> p = new PageInfo<>(userlist);
 		model.addAttribute("userlist", userlist);
 		model.addAttribute("p", p);
-		model.addAttribute("mainPage", "userlist.jsp");
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "userlist.jsp");
+		return Dictionary.ADMIN_FIELD + "/userlist";// Dictionary.MAIN_VIEW;
 
 	}
 

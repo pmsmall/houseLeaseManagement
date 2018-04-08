@@ -24,4 +24,6 @@ public class Dictionary {
 	public static final String LOGIN_VIEW = "redirect:/login.html";
 
 	public static final String CENTER_VIEW = "/center";
+
+	public static final String LOGIN_URI = "/houseLeaseManagement/login.html";
 }

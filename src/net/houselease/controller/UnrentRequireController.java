@@ -36,8 +36,8 @@ public class UnrentRequireController {
 		PageInfo<?> p = new PageInfo<>(checkout);
 		model.addAttribute("p", p);
 		model.addAttribute("checkout", checkout);
-		model.addAttribute("mainPage", "checkout.jsp");
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "checkout.jsp");
+		return Dictionary.ADMIN_FIELD + "/checkout";// Dictionary.MAIN_VIEW;
 	}
 
 	// 租客删除自己已退租列表
@@ -71,7 +71,7 @@ public class UnrentRequireController {
 			}
 		}
 
-		model.addAttribute("mainPage", "mycheckout.jsp");
-		return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "mycheckout.jsp");
+		return Dictionary.RENTER_FIELD + "/mycheckout";// Dictionary.MAIN_VIEW;
 	}
 }

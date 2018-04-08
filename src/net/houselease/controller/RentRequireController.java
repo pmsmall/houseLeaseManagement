@@ -74,8 +74,8 @@ public class RentRequireController {
 		PageInfo<?> p = new PageInfo<>(applylist);
 		model.addAttribute("applylist", applylist);
 		model.addAttribute("p", p);
-		model.addAttribute("mainPage", "applylist.jsp");
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "applylist.jsp");
+		return Dictionary.ADMIN_FIELD + "/applylist";// Dictionary.MAIN_VIEW;
 	}
 
 	@RequestMapping("/applychangehousestatus")
@@ -87,7 +87,6 @@ public class RentRequireController {
 		zulist.setHouse_id(house_id);
 		zulist.setPrice(houselist.getPrice());
 		zulist.setAddress(houselist.getAddress());
-
 		return "";
 	}
 
@@ -118,8 +117,8 @@ public class RentRequireController {
 				model.addAttribute("p", p);
 			}
 		}
-		model.addAttribute("mainPage", "myapply.jsp");
-		return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "myapply.jsp");
+		return Dictionary.RENTER_FIELD + "/myapply";// Dictionary.MAIN_VIEW;
 	}
 
 }

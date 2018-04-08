@@ -51,9 +51,9 @@ public class RepairsController {
 		model.addAttribute("solve", list);
 		model.addAttribute("count", count);
 		model.addAttribute("p", p);
-		model.addAttribute("mainPage", "solve.jsp");
+		// model.addAttribute("mainPage", "solve.jsp");
 		model.addAttribute("vo", vo);
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		return Dictionary.ADMIN_FIELD + "/solve";// Dictionary.MAIN_VIEW;
 	}
 
 	// 租客查找自己已处理的报障
@@ -76,9 +76,9 @@ public class RepairsController {
 			}
 			model.addAttribute("vo", vo);
 		}
-		model.addAttribute("mainPage", "mysolve.jsp");
+		// model.addAttribute("mainPage", "mysolve.jsp");
 
-		return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
+		return Dictionary.RENTER_FIELD + "/mysolve";// Dictionary.MAIN_VIEW;
 	}
 
 	// 管理员删除已处理报障记录
@@ -111,8 +111,8 @@ public class RepairsController {
 				model.addAttribute("p", p);
 			}
 		}
-		model.addAttribute("mainPage", "showaddwrong.jsp");
-		return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "showaddwrong.jsp");
+		return Dictionary.RENTER_FIELD + "/showaddwrong";// Dictionary.MAIN_VIEW;
 	}
 
 	// 点击报障后跳转到添加报障信息页面
@@ -120,8 +120,8 @@ public class RepairsController {
 	public String addwrong(Integer id, Model model) {
 		Zulist zulist = paidService.findzukezulist(id);
 		model.addAttribute("zulist", zulist);
-		model.addAttribute("mainPage", "addwrong.jsp");
-		return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "addwrong.jsp");
+		return Dictionary.RENTER_FIELD + "/addwrong";// Dictionary.MAIN_VIEW;
 	}
 
 	// 添加报障信息到wrong表
@@ -143,8 +143,8 @@ public class RepairsController {
 		PageInfo<?> p = new PageInfo<>(list);
 		model.addAttribute("wrong", list);
 		model.addAttribute("p", p);
-		model.addAttribute("mainPage", "wrong.jsp");
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "wrong.jsp");
+		return Dictionary.ADMIN_FIELD + "/wrong";// Dictionary.MAIN_VIEW;
 	}
 
 	// 租客查看自己的未处理报障
@@ -167,8 +167,8 @@ public class RepairsController {
 				}
 			}
 		}
-		model.addAttribute("mainPage", "mywrong.jsp");
-		return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "mywrong.jsp");
+		return Dictionary.RENTER_FIELD + "/mywrong";// Dictionary.MAIN_VIEW;
 	}
 
 	// 管理员处理报障

@@ -15,6 +15,8 @@
 .sidebar-title {
 	height: 40px;
 	line-height: 40px;
+	padding-left: 50px;
+	color: #BCE5F7;
 	/*text-indent: 1em;*/
 	font-size: 24px;
 	/*text-align: left;*/
@@ -105,6 +107,17 @@
 .search-wrap {
 	padding: 15px 0;
 	border-bottom: 1px solid #e5e5e5;
+	clear: both;
+	width: 100%;
+	/*position: absolute;*/
+	text-align: center;
+}
+
+.search-tab {
+	/*padding-left: 20px;*/
+	padding-right: 20px;
+	margin-left: 4%;
+	margin-right: 20px;
 }
 
 .search-tab tr {
@@ -112,9 +125,11 @@
 }
 
 .search-tab th {
-	text-align: right;
+	text-align: left;
+	padding-left: 5px;
 	padding-right: 10px;
 	font-weight: normal;
+	color: #bbeeff;
 }
 
 .search-tab td {
@@ -127,7 +142,7 @@
 	padding: 2px 4px;
 	border: 1px solid #ccc;
 	background: #fff;
-	border-radius: 5px;
+	border-radius: 1px;
 }
 
 .result-wrap {
@@ -139,6 +154,9 @@
 	line-height: 35px;
 	padding-bottom: 5px;
 	overflow: hidden;
+	color: #BCE5F7;
+	padding-left: 50px;
+	padding-top: 20px;
 }
 
 .comment-title {
@@ -153,6 +171,11 @@
 
 .result-list i {
 	padding-right: 5px;
+}
+
+.result-content {
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .result-tab {
@@ -183,16 +206,49 @@
 	text-align: center;
 }
 
-.result-tab tr:nth-child(odd) {
-	background: #f9f9f9;
+.result_tab_head {
+	FONT-WEIGHT: bold;
+	FONT-STYLE: normal;
+	BACKGROUND-COLOR: rgba(238, 238, 238, 0.5);
+	TEXT-DECORATION: none;
+	color: #002A80;
 }
 
-.result-tab tr:hover {
-	background: #f1f1f1;
+.result_tab_body {
+	FONT-WEIGHT: normal;
+	FONT-STYLE: normal;
+	BACKGROUND-COLOR: rgba(255, 255, 255, 0.6);
+	TEXT-DECORATION: none;
+}
+
+.result_tab_body a:hover {
+	background-color: rgba(255, 255, 255, 0);
+	color: #002A80;
+}
+
+
+/*.result-tab tbody :first-child {
+	FONT-WEIGHT: bold;
+	FONT-STYLE: normal;
+	BACKGROUND-COLOR: rgba(238, 238, 238, 0.5);
+	TEXT-DECORATION: none
+}*/
+
+.result-tab>tbody>tr:nth-child(2n+3) {
+	background-color: rgba(249, 249, 249, 0.6);
+}
+
+.result-tab>tbody>tr:nth-child(2n+1):hover {
+	background-color: rgba(241, 241, 241, 0.5);
+}
+
+.result-tab>tbody>tr:nth-child(2n):hover {
+	background-color: rgba(241, 241, 241, 0.5);
 }
 
 .result-tab tr.even-tr {
-	background: #e9fff2;
+	/*background: #e9fff2;*/
+	background-color: rgba(233, 255, 242, 0.5);
 }
 
 .comment-tab {
@@ -207,7 +263,8 @@
 
 .comment-tab a.on {
 	padding: 0 15px;
-	background: #49afcd;
+	/*background: #49afcd;*/
+	background-color: rgba(73, 175, 205, 0.5);
 	color: #fff;
 	border-radius: 5px 5px 0 0;
 }
@@ -288,4 +345,9 @@
 .sort-input {
 	width: 25px;
 	text-align: center;
+}
+
+#pagelink {
+	color: #BCE5F7;
+	padding-right: 20px;
 }

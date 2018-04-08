@@ -51,9 +51,9 @@ public class PaidController {
 		model.addAttribute("paid", list);
 		model.addAttribute("sum", sum);
 		model.addAttribute("p", p);
-		model.addAttribute("mainPage", "paid.jsp");
+		// model.addAttribute("mainPage", "paid.jsp");
 		model.addAttribute("vo", vo);
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		return Dictionary.ADMIN_FIELD + "/paid";// Dictionary.MAIN_VIEW;
 	}
 
 	// 租客查找自己已缴租金列表
@@ -74,8 +74,8 @@ public class PaidController {
 			model.addAttribute("p", p);
 			model.addAttribute("vo", vo);
 		}
-		model.addAttribute("mainPage", "mypaid.jsp");
-		return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "mypaid.jsp");
+		return Dictionary.RENTER_FIELD + "/mypaid";// Dictionary.MAIN_VIEW;
 	}
 
 	// 管理员删除已缴租金记录
@@ -101,8 +101,8 @@ public class PaidController {
 		PageInfo<?> p = new PageInfo<>(list);
 		model.addAttribute("zulist", list);
 		model.addAttribute("p", p);
-		model.addAttribute("mainPage", "showaddpaid.jsp");
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "showaddpaid.jsp");
+		return Dictionary.ADMIN_FIELD + "/showaddpaid";// Dictionary.MAIN_VIEW;
 	}
 
 	// 点击收租后跳转到添加租金信息页面
@@ -110,8 +110,8 @@ public class PaidController {
 	public String addpaid(Integer id, Model model) {
 		Zulist zulist = paidService.findzukezulist(id);
 		model.addAttribute("zulist", zulist);
-		model.addAttribute("mainPage", "addpaid.jsp");
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "addpaid.jsp");
+		return Dictionary.ADMIN_FIELD + "/addpaid";// Dictionary.MAIN_VIEW;
 	}
 
 	// 添加租金信息到topaid表
@@ -119,7 +119,6 @@ public class PaidController {
 	public String inserttopaid(Topaid topaid, Model model) {
 		topaidService.inserttopaid(topaid);
 		model.addAttribute("error", "inserttopaid");
-
 		return "redirect:showaddpaid.action";
 	}
 
@@ -133,8 +132,8 @@ public class PaidController {
 		PageInfo<?> p = new PageInfo<>(list);
 		model.addAttribute("topaid", list);
 		model.addAttribute("p", p);
-		model.addAttribute("mainPage", "topaid.jsp");
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "topaid.jsp");
+		return Dictionary.ADMIN_FIELD + "/topaid";// Dictionary.MAIN_VIEW;
 	}
 
 	// 租客查看自己的未缴租金
@@ -153,8 +152,8 @@ public class PaidController {
 			model.addAttribute("p", p);
 			model.addAttribute("topaid", topaid);
 		}
-		model.addAttribute("mainPage", "mytopaid.jsp");
-		return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "mytopaid.jsp");
+		return Dictionary.RENTER_FIELD + "/mytopaid";// Dictionary.MAIN_VIEW;
 	}
 
 	// 租客进行支付操作

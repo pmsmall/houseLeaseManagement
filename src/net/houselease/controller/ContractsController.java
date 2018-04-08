@@ -66,16 +66,16 @@ public class ContractsController {
 	public String seehetong(String house_id, Model model) {
 		Hetong hetong = hetongService.findhetong(house_id);
 		model.addAttribute("hetong", hetong);
-		model.addAttribute("mainPage", "hetong.jsp");
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "hetong.jsp");
+		return Dictionary.ADMIN_FIELD + "/hetong";// Dictionary.MAIN_VIEW;
 	}
 
 	@RequestMapping("/updatehetong")
 	public String updatehetong(String house_id, Model model) {
 		Hetong hetong = hetongService.findhetong(house_id);
 		model.addAttribute("hetong", hetong);
-		model.addAttribute("mainPage", "updatehetong.jsp");
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "updatehetong.jsp");
+		return Dictionary.ADMIN_FIELD + "/updatehetong";// Dictionary.MAIN_VIEW;
 	}
 
 	@RequestMapping("/changehetong")
@@ -107,7 +107,7 @@ public class ContractsController {
 	public String zukeseehetong(String house_id, Model model) {
 		Hetong hetong = hetongService.findhetong(house_id);
 		model.addAttribute("hetong", hetong);
-		model.addAttribute("mainPage", "showhetong.jsp");
-		return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "showhetong.jsp");
+		return Dictionary.RENTER_FIELD + "/showhetong";// Dictionary.MAIN_VIEW;
 	}
 }

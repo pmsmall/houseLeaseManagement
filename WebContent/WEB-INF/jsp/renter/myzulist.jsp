@@ -1,21 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
+
 <!DOCTYPE html>
 <html>
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>房屋租赁系统</title>
-		<link rel="stylesheet" type="text/css" href="<%=path%>/css/common.css" />
-		<link rel="stylesheet" type="text/css" href="<%=path%>/css/main.css" />
-		<script type="text/javascript" src="<%=path%>/js/jquery-3.3.1.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/libs/modernizr.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/houseLeaseManagement/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="/houseLeaseManagement/css/main.css" />
+		<script type="text/javascript" src="/houseLeaseManagement/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="/houseLeaseManagement/js/libs/modernizr.min.js"></script>
 		<script type="text/javascript">
 			var error = "${param.error}";
 			if(error == "applysuccess") {
@@ -38,7 +34,7 @@
 				<div class="result-content">
 					<table id=grid class="result-tab" style="width: 100%;">
 						<tbody>
-							<tr style="FONT-WEIGHT: bold; FONT-STYLE: normal; BACKGROUND-COLOR: #eeeeee; TEXT-DECORATION: none">
+							<tr class="result_tab_head">
 
 								<td>租赁人</td>
 								<td>租赁人身份证号</td>
@@ -50,9 +46,8 @@
 
 							</tr>
 							<c:forEach items="${userlistzu}" varStatus="i" var="userlist">
-
-								<tr style="FONT-WEIGHT: normal; FONT-STYLE: normal; BACKGROUND-COLOR: white; TEXT-DECORATION: none">
-									<c:forEach items="${userlist.zulist}" var="zulist">
+								<c:forEach items="${userlist.zulist}" var="zulist">
+									<tr class="result_tab_body">
 										<td>${userlist.name }</td>
 
 										<td>${userlist.idcard}</td>
@@ -64,12 +59,12 @@
 										<td>${zulist.price}</td>
 
 										<td>
-											<a class="link-update" href="<%=path%>/hetong/zukeseehetong.action?house_id=${zulist.house_id }">查看合同</a>
+											<a class="link-update" href="/houseLeaseManagement/hetong/zukeseehetong.action?house_id=${zulist.house_id }">查看合同</a>
 											&nbsp;&nbsp;
-											<a class="link-del" href="<%=path%>/applyout/insertapplyout.action?house_id=${zulist.house_id }" onclick="return window.confirm('确定要申请退租吗？')">申请退租</a>
+											<a class="link-del" href="/houseLeaseManagement/applyout/insertapplyout.action?house_id=${zulist.house_id }" onclick="return window.confirm('确定要申请退租吗？')">申请退租</a>
 										</td>
-									</c:forEach>
-								</tr>
+									</tr>
+								</c:forEach>
 							</c:forEach>
 						</tbody>
 					</table>
@@ -105,12 +100,6 @@
 				document.houseForm.submit();
 			}
 		</script>
-		<!-- Footer -->
-		<div id="da-footer">
-			<div class="da-container clearfix">
-				<p>2018 . All Rights Reserved.
-			</div>
-		</div>
 	</body>
 
 </html>

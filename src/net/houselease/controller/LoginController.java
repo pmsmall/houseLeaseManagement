@@ -76,7 +76,7 @@ public class LoginController {
 
 	@RequestMapping("/toindex")
 	public String toindex(Model model) throws Exception {
-		return "admin/index";
+		return "redirect:/centerHome.html";
 	}
 
 	private static final String CENTER_VIEW = "redirect:" + Dictionary.CENTER_VIEW;

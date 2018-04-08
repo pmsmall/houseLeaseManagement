@@ -32,8 +32,8 @@ public class HousesController {
 
 		model.addAttribute("p", p);
 		model.addAttribute("houselist", houselist);
-		model.addAttribute("mainPage", "houselist.jsp");
-		return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "houselist.jsp");
+		return Dictionary.RENTER_FIELD + "/houselist";
 	}
 
 	@RequestMapping("/ahouselist")
@@ -46,8 +46,8 @@ public class HousesController {
 
 		model.addAttribute("p", p);
 		model.addAttribute("houselist", houselist);
-		model.addAttribute("mainPage", "ahouselist.jsp");
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "ahouselist.jsp");
+		return Dictionary.ADMIN_FIELD + "/ahouselist";// Dictionary.MAIN_VIEW;
 	}
 
 	@RequestMapping("/addhouse")
@@ -58,22 +58,22 @@ public class HousesController {
 		if (houselist1 != null) {
 			model.addAttribute("error", "该房屋id已存在");
 			model.addAttribute("houselist", houselist);
-			model.addAttribute("mainPage", "addhouse.jsp");
-			return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+			// model.addAttribute("mainPage", "addhouse.jsp");
+			return Dictionary.ADMIN_FIELD + "/addhouse";// Dictionary.MAIN_VIEW;
 		} else {
 			model.addAttribute("error", "添加成功");
 			houselistService.inserthouse(houselist);
 			model.addAttribute("houselist", houselist);
-			model.addAttribute("mainPage", "addhouse.jsp");
-			return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+			// model.addAttribute("mainPage", "addhouse.jsp");
+			return Dictionary.ADMIN_FIELD + "/addhouse";// Dictionary.MAIN_VIEW;
 		}
 	}
 
 	@RequestMapping("/toaddhouse")
 	public String toaddhoust(Model model) {
-		model.addAttribute("mainPage", "addhouse.jsp");
+		// model.addAttribute("mainPage", "addhouse.jsp");
 
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		return Dictionary.ADMIN_FIELD + "/addhouse";// Dictionary.MAIN_VIEW;
 	}
 
 	@RequestMapping("/deletehouse")
@@ -93,8 +93,8 @@ public class HousesController {
 	public String findid(Integer id, Model model) {
 		Houselist list = houselistService.findid(id);
 		model.addAttribute("houselist", list);
-		model.addAttribute("mainPage", "changehouse.jsp");
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "changehouse.jsp");
+		return Dictionary.ADMIN_FIELD + "/changehouse";// Dictionary.MAIN_VIEW;
 	}
 
 	@RequestMapping("/findhouseidupdate")
@@ -102,15 +102,15 @@ public class HousesController {
 		Houselist list = houselistService.findhouseidupdate(houselist);
 		if (list != null) {
 			model.addAttribute("houselist", houselist);
-			model.addAttribute("mainPage", "changehouse.jsp");
+			// model.addAttribute("mainPage", "changehouse.jsp");
 			model.addAttribute("error", "该房屋id已存在");
-			return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+			return Dictionary.ADMIN_FIELD + "/changehouse";// Dictionary.MAIN_VIEW;
 		} else {
 			houselistService.updatehouse(houselist);
 			model.addAttribute("houselist", houselist);
-			model.addAttribute("mainPage", "changehouse.jsp");
+			// model.addAttribute("mainPage", "changehouse.jsp");
 			model.addAttribute("error", "更新成功");
-			return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+			return Dictionary.ADMIN_FIELD + "/changehouse";// Dictionary.MAIN_VIEW;
 		}
 	}
 

@@ -35,9 +35,9 @@ public class RentReplyController {
 		Hetong hetong = new Hetong();
 		hetong.setHouse_id(house_id);
 		model.addAttribute("hetong", hetong);
-		model.addAttribute("mainPage", "addhetong.jsp");
+		// model.addAttribute("mainPage", "addhetong.jsp");
 
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		return Dictionary.ADMIN_FIELD + "/addhetong";// Dictionary.MAIN_VIEW;
 	}
 
 	// 管理员查看所有在租列表
@@ -49,8 +49,8 @@ public class RentReplyController {
 		PageInfo<?> p = new PageInfo<>(zulist);
 		model.addAttribute("p", p);
 		model.addAttribute("zulist", zulist);
-		model.addAttribute("mainPage", "zulist.jsp");
-		return Dictionary.ADMIN_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "zulist.jsp");
+		return Dictionary.ADMIN_FIELD + "/zulist";// Dictionary.MAIN_VIEW;
 	}
 
 	// 查看我的在租列表
@@ -71,8 +71,8 @@ public class RentReplyController {
 				model.addAttribute("p", p);
 			}
 		}
-		model.addAttribute("mainPage", "myzulist.jsp");
-		return Dictionary.RENTER_FIELD + Dictionary.MAIN_VIEW;
+		// model.addAttribute("mainPage", "myzulist.jsp");
+		return Dictionary.RENTER_FIELD + "/myzulist";// Dictionary.MAIN_VIEW;
 	}
 
 }

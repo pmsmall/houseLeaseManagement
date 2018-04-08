@@ -1,23 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
+
 <!DOCTYPE html>
 <html>
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Insert title here</title>
-		<link rel="stylesheet" type="text/css" href="<%=path%>/css/common.css" />
-		<link rel="stylesheet" type="text/css" href="<%=path%>/css/main.css" />
-		<script type="text/javascript" src="<%=path%>/js/libs/modernizr.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery-1.8.3.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery-ui-datepicker.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery.validate.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="<%=path%>/css/jquery-ui.css" />
+		<link rel="stylesheet" type="text/css" href="/houseLeaseManagement/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="/houseLeaseManagement/css/main.css" />
+		<script type="text/javascript" src="/houseLeaseManagement/js/libs/modernizr.min.js"></script>
+		<script type="text/javascript" src="/houseLeaseManagement/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="/houseLeaseManagement/js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="/houseLeaseManagement/js/jquery.validate.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/houseLeaseManagement/css/jquery-ui.css" />
 		<style type="text/css">
 			.title {
 				margin: 10px auto;
@@ -66,9 +62,9 @@
 				<p>2．如果乙方在租赁期限未满时退租，甲方仅退还剩余租金的40％（租期未满一个月的不在此例）；</p>
 				<p>四、本协议书一式两份，甲乙双方各执一份；本协议甲乙双方签字后生效。补充协议亦属于合同的一部分。</p>
 				<br /> 甲方（盖章）：_________ 乙方（盖章）：_________ <br /> 法定代表人（签字）：_________ 法定代表人（签字）：_________ <br /> 担保人（签章）：_________ <br /> _________年____月____日 _________年____月____日 <br /> 签订地点：_________ 签订地点：_________
-				<div class="button">
-					<input class="btn btn-primary btn6 mr10" value="修改合同" type="submit">
-					<input class="btn btn6" onclick="javascript:to_dayin()" value="打印合同" type="button"> <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+				<div class="button light">
+					<input name="submit" class="btn btn-primary btn6 mr10" value="修改合同" type="submit">
+					<input name="submit" class="btn btn6" onclick="javascript:to_dayin()" value="打印合同" type="button"> <input name="reset" class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
 				</div>
 			</form>
 		</div>

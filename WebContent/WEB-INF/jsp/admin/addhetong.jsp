@@ -2,24 +2,21 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>
+
 <!DOCTYPE html>
 <html>
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>房屋租赁系统</title>
-		<link rel="stylesheet" type="text/css" href="<%=path%>/css/common.css" />
-		<link rel="stylesheet" type="text/css" href="<%=path%>/css/main.css" />
-		<script type="text/javascript" src="<%=path%>/js/libs/modernizr.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery-1.8.3.min.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery-ui-datepicker.js"></script>
-		<script type="text/javascript" src="<%=path%>/js/jquery.validate.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="<%=path%>/css/jquery-ui.css" />
+		<link rel="stylesheet" type="text/css" href="/houseLeaseManagement/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="/houseLeaseManagement/css/main.css" />
+		<script type="text/javascript" src="/houseLeaseManagement/js/libs/modernizr.min.js"></script>
+		<script type="text/javascript" src="/houseLeaseManagement/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="/houseLeaseManagement/js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="/houseLeaseManagement/js/jquery.validate.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/houseLeaseManagement/css/jquery-ui.css" />
+
 		<style>
 			.error {
 				font-size: 13px;
@@ -27,7 +24,7 @@
 			}
 		</style>
 		<script type="text/javascript">
-			$().ready(function() {
+			$(function() {
 				// 在键盘按下并释放及提交后验证提交表单
 				$("#fromdate").datepicker();
 				$("#todate").datepicker();
@@ -130,7 +127,7 @@
 		</div>
 		<div class="result-content">
 			<div class="sidebar-title">
-				<form action="<%=path%>/hetong/inserthetong.action" method="post" id="myform" name="myform" enctype="multipart/form-data">
+				<form action="/houseLeaseManagement/hetong/inserthetong.action" method="post" id="myform" name="myform" enctype="multipart/form-data">
 					<table class="insert-tab" style="width: 100%;">
 						<tbody>
 							<tr>
@@ -159,11 +156,11 @@
 							</tr>
 							<tr>
 								<th><i class="require-red">*</i>起租时间：</th>
-								<td><input type="date" class="common-text" name="fromdate" id="fromdate" value="${hetong.fromdate}" size="50" type="text" /></td>
+								<td><input type="text" class="common-text" name="fromdate" id="fromdate" value="${hetong.fromdate}" size="50" /></td>
 							</tr>
 							<tr>
 								<th><i class="require-red">*</i>退租时间：</th>
-								<td><input type="date" class="common-text" name="todate" id="todate" value="${hetong.todate}" size="50" type="text" /></td>
+								<td><input type="text" class="common-text" name="todate" id="todate" value="${hetong.todate}" size="50" /></td>
 							</tr>
 							<tr>
 								<th><i class="require-red">*</i>每月租金：</th>
@@ -173,9 +170,9 @@
 								<th><i class="require-red">*</i>每月交租日（数字）：</th>
 								<td><input class="common-text" name="payday" id="payday" value="${hetong.payday}" size="50" type="text" /></td>
 							</tr>
-							<tr>
+							<tr class="light">
 								<th></th>
-								<td><input class="btn btn-primary btn6 mr10" value="提交" type="submit" /> <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button" /></td>
+								<td><input name="submit" class="btn btn-primary btn6 mr10" value="提交" type="submit"> <input name="reset" class="btn btn6" onclick="history.go(-1)" value="返回" type="button"></td>
 							</tr>
 							<tr>
 								<td>
